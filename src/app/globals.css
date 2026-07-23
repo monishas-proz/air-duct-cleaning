@@ -1,0 +1,429 @@
+@import "tailwindcss";
+
+@theme {
+
+  /* Brand */
+  --color-primary-50: var(--color-green-50);
+  --color-primary-100: var(--color-green-100);
+  --color-primary-200: var(--color-green-200);
+  --color-primary-300: var(--color-green-300);
+  --color-primary-400: var(--color-green-400);
+  --color-primary-500: var(--color-green-500);
+  --color-primary-600: var(--color-green-600);
+  --color-primary-700: var(--color-green-700);
+  --color-primary-800: var(--color-green-800);
+  --color-primary-900: var(--color-green-900);
+  --color-primary-950: var(--color-green-950);
+
+  /* Secondary */
+  --color-secondary-50: var(--color-indigo-50);
+  --color-secondary-100: var(--color-indigo-100);
+  --color-secondary-200: var(--color-indigo-200);
+  --color-secondary-300: var(--color-indigo-300);
+  --color-secondary-400: var(--color-indigo-400);
+  --color-secondary-500: var(--color-indigo-500);
+  --color-secondary-600: var(--color-indigo-600);
+  --color-secondary-700: var(--color-indigo-700);
+  --color-secondary-800: var(--color-indigo-800);
+  --color-secondary-900: var(--color-indigo-900);
+  --color-secondary-950: var(--color-indigo-950);
+
+  /* Neutral */
+  --color-neutral-50: var(--color-slate-50);
+  --color-neutral-100: var(--color-slate-100);
+  --color-neutral-200: var(--color-slate-200);
+  --color-neutral-300: var(--color-slate-300);
+  --color-neutral-400: var(--color-slate-400);
+  --color-neutral-500: var(--color-slate-500);
+  --color-neutral-600: var(--color-slate-600);
+  --color-neutral-700: var(--color-slate-700);
+  --color-neutral-800: var(--color-slate-800);
+  --color-neutral-900: var(--color-slate-900);
+  --color-neutral-950: var(--color-slate-950);
+
+  /* Utility */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-heading: var(--font-montserrat);
+  --font-body: var(--font-dm-sans);
+  --font-ui: var(--font-hanken-grotesk);
+}
+
+/* ==========================================
+   Font Utilities
+========================================== */
+
+/* .font-heading {
+  font-family: var(--font-montserrat);
+}
+
+.font-body {
+  font-family: var(--font-dm-sans);
+}
+
+.font-ui {
+  font-family: var(--font-hanken-grotesk);
+} */
+
+/* ==========================================
+   Section Utilities
+========================================== */
+
+.section {
+  padding-block: 4rem;
+}
+
+.section-sm {
+  padding-block: 3rem;
+}
+
+.section-lg {
+  padding-block: 6rem;
+}
+
+.section-gray {
+  background-color: var(--color-neutral-50);
+}
+
+.section-light {
+  background-color: var(--color-neutral-100);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-dm-sans);
+}
+
+
+.container {
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ==========================================
+   Typography Components
+========================================== */
+
+/* Display */
+.display {
+  @apply text-4xl font-bold leading-none;
+  font-family: var(--font-montserrat);
+}
+
+/* Headings */
+.heading-1 {
+  @apply text-3xl font-bold leading-tight;
+  font-family: var(--font-montserrat);
+}
+
+.heading-2 {
+  @apply text-2xl font-semibold leading-snug;
+  font-family: var(--font-montserrat);
+}
+
+.heading-3 {
+  @apply text-xl font-semibold leading-snug;
+  font-family: var(--font-montserrat);
+}
+
+/* Body */
+.body-lg {
+  @apply text-base leading-relaxed;
+  font-family: var(--font-dm-sans);
+}
+
+.body-md {
+  @apply text-sm leading-relaxed;
+  font-family: var(--font-dm-sans);
+}
+
+.body-sm {
+  @apply text-xs leading-relaxed;
+  font-family: var(--font-dm-sans);
+}
+
+/* Caption */
+.caption {
+  @apply text-xs;
+  font-family: var(--font-hanken-grotesk);
+}
+
+/* ==========================================
+   Responsive Typography
+========================================== */
+
+@media (min-width: 768px) {
+  .display {
+    @apply text-5xl;
+  }
+
+  .heading-1 {
+    @apply text-4xl;
+  }
+
+  .heading-2 {
+    @apply text-3xl;
+  }
+
+  .heading-3 {
+    @apply text-2xl;
+  }
+
+  .body-lg {
+    @apply text-lg;
+  }
+
+  .body-md {
+    @apply text-base;
+  }
+
+  .caption {
+    @apply text-sm;
+  }
+}
+
+@media (min-width: 1024px) {
+  .display {
+    @apply text-6xl;
+  }
+
+  .heading-1 {
+    @apply text-5xl;
+  }
+
+  .heading-2 {
+    @apply text-4xl;
+  }
+
+  .heading-3 {
+    @apply text-3xl;
+  }
+
+  .subtitle {
+  @apply text-sm font-semibold md:text-base;
+  font-family: var(--font-montserrat);
+}
+}
+
+/* ==========================================================
+   Button Hover Effect
+========================================================== */
+
+.btn-effect {
+  --btn-overlay: transparent;
+  --btn-hover-text: inherit;
+  --btn-hover-border: transparent;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+
+  transition:
+    color .45s cubic-bezier(.76,0,.24,1),
+    border-color .45s cubic-bezier(.76,0,.24,1);
+}
+
+/* Sliding Background */
+
+.btn-effect::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background: var(--btn-overlay);
+
+  transform: translateX(100%);
+  transition: transform .45s cubic-bezier(.76,0,.24,1);
+}
+
+.btn-effect:hover::before {
+  transform: translateX(0);
+}
+
+/* Keep content above overlay */
+
+.btn-text,
+.btn-icon {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===========================
+   Text Animation
+=========================== */
+
+.btn-text {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.btn-text span {
+  display: block;
+  transition: transform .45s cubic-bezier(.76,0,.24,1);
+}
+
+.btn-text span:last-child {
+  position: absolute;
+  inset: 0;
+  transform: translateY(120%);
+}
+
+.btn-effect:hover .btn-text span:first-child {
+  transform: translateY(-120%);
+}
+
+.btn-effect:hover .btn-text span:last-child {
+  transform: translateY(0);
+}
+
+/* ===========================
+   Icon Animation
+=========================== */
+
+.btn-icon {
+  transition:
+    transform .45s cubic-bezier(.76,0,.24,1);
+}
+
+.btn-effect:hover .btn-icon {
+  transform: translateX(3px);
+}
+
+/* ===========================
+   Hover States
+=========================== */
+
+.btn-effect:hover {
+  color: var(--btn-hover-text);
+  border-color: var(--btn-hover-border);
+}
+
+/* ===========================
+   Variants
+=========================== */
+
+.btn-primary {
+  --btn-overlay: var(--color-primary-700);
+  --btn-hover-text: var(--color-white);
+}
+
+.btn-secondary {
+  --btn-overlay: var(--color-secondary-700);
+  --btn-hover-text: var(--color-white);
+}
+
+.btn-white {
+  --btn-overlay: var(--color-neutral-100);
+  --btn-hover-text: var(--color-primary-700);
+}
+
+.btn-outlinePrimary {
+  --btn-overlay: var(--color-primary-700);
+  --btn-hover-text: var(--color-white);
+  --btn-hover-border: var(--color-primary-700);
+}
+
+.btn-outlineWhite {
+  --btn-overlay: rgba(255,255,255,.15);
+  --btn-hover-text: var(--color-white);
+  --btn-hover-border: rgba(255,255,255,.5);
+}
+
+.btn-chip {
+  --btn-overlay: var(--color-primary-700);
+  --btn-hover-text: var(--color-white);
+  --btn-hover-border: var(--color-primary-700);
+}
+
+.btn-link::before {
+  display: none;
+}
+
+/* ==========================================
+   Link Hover Effect
+========================================== */
+
+.link-hover {
+  position: relative;
+  display: inline-block;
+
+  transition: color .45s cubic-bezier(.76,0,.24,1);
+}
+
+.link-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+
+  width: 100%;
+  height: 2px;
+
+  background: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition: transform .45s cubic-bezier(.76,0,.24,1);
+}
+
+.link-hover:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ==========================================
+   Image Hover Effect
+========================================== */
+
+.image-hover {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  transition:
+    transform .3s ease-in-out,
+    box-shadow .3s ease-in-out;
+}
+
+.image-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, .18);
+}
+
+.image-hover img {
+  transition:
+    transform .3s ease-in-out;
+}
+
+.image-hover:hover img {
+  transform: scale(1.05);
+}
+
+.image-hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0,0,0,0);
+
+  transition:
+    background .3s ease-in-out;
+
+  pointer-events: none;
+}
+
+.image-hover:hover::after {
+  background: rgba(0,0,0,.10);
+}
