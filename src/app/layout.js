@@ -26,9 +26,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      // <body
-      //   className={`${hankenGrotesk.variable} ${montserrat.variable} ${dmSans.variable}`}
-      // >
+     
       <body>
         <Header />
         <main>{children}</main>
