@@ -1,5 +1,9 @@
 @import "tailwindcss";
-
+:root {
+  --font-hanken-grotesk: "Segoe UI", Arial, sans-serif;
+  --font-montserrat: "Arial", "Helvetica Neue", sans-serif;
+  --font-dm-sans: "Segoe UI", Arial, sans-serif;
+}
 @theme {
 
   /* Brand */
