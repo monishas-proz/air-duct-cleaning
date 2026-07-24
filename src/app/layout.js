@@ -1,7 +1,10 @@
 import { Hanken_Grotesk, Montserrat, DM_Sans } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+
 import Header from "@/components/Header";
-import "./globals.css";
 import Footer from "@/components/Footer";
+
+import "./globals.css";
 
 const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-hanken-grotesk",
@@ -30,8 +33,20 @@ export default function RootLayout({ children }) {
         className={`${hankenGrotesk.variable} ${montserrat.variable} ${dmSans.variable}`}
       >
         <Header />
+
         <main>{children}</main>
+
         <Footer />
+
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              borderRadius: "12px",
+            },
+          }}
+        />
       </body>
     </html>
   );

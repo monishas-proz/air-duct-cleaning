@@ -81,7 +81,8 @@ export const SERVICES = [
     title: "AHU Coil Cleaning & Treatment",
     description:
        "Deep cleaning and antimicrobial treatment of AHU coils to remove dust and microbial growth, improving cooling efficiency and air quality.",
-    
+    icon: SERVICES_ICONS.ahuCoil,
+    image: SERVICES_IMAGES.ahuCoil,
   },
 
   {
@@ -89,7 +90,8 @@ export const SERVICES = [
     title: " HVAC Duct Leakage Testing & Sealing ",
     description:
        "Detection of air leaks in ductwork followed by professional sealing to improve energy efficiency and airflow delivery.",
-    
+    icon: SERVICES_ICONS.ductleakage,
+    image: SERVICES_IMAGES.ductleakage,
   },
 
   {
@@ -97,7 +99,7 @@ export const SERVICES = [
     title: "Hydronic Balancing of HVAC Chilled Water Systems",
     description:
        "Balancing of chilled water flow rates across HVAC circuits to ensure uniform cooling and reduce energy waste.",
-  
+    
   },
 
   {
@@ -105,7 +107,8 @@ export const SERVICES = [
     title: "Raised Floor Cleaning",
     description:
        "Cleaning of raised access flooring in server/data rooms to remove dust affecting equipment performance.",
-    
+    icon: SERVICES_ICONS.floorCleaning,
+    image: SERVICES_IMAGES.floorCleaning,
   },
 
   {
@@ -113,7 +116,8 @@ export const SERVICES = [
     title: "Carpet Cleaning ",
     description:
        "Deep cleaning of commercial carpets to remove dirt, stains, and allergens.",
-    
+    icon: SERVICES_ICONS.carpetCleaning,
+    image: SERVICES_IMAGES.carpetCleaning,
   },
 
   {
@@ -121,7 +125,8 @@ export const SERVICES = [
     title: "Office Sanitization & Disinfection ",
     description:
        "Sanitization of office spaces using disinfectant treatments to maintain a hygienic work environment.",
-    
+    icon: SERVICES_ICONS.sanitization,
+    image: SERVICES_IMAGES.sanitization,
   },
 
   {
@@ -129,7 +134,8 @@ export const SERVICES = [
     title: "Indoor Air Quality Assessment",
     description:
        "On-site assessment of indoor air quality using calibrated instruments to detect pollutants, humidity, and ventilation issues.",
-   
+    icon: SERVICES_ICONS.indoorAirQuality,
+    image: SERVICES_IMAGES.indoorAirQuality,
   },
 
   {
@@ -137,7 +143,8 @@ export const SERVICES = [
     title: "Air Quality Improvement Consultation ",
     description:
        "Expert recommendations to improve indoor air quality based on assessment results.",
-    
+    icon: SERVICES_ICONS.airQuality,
+    image: SERVICES_IMAGES.improvement,
   },
 
   {
@@ -145,7 +152,8 @@ export const SERVICES = [
     title: "HVAC Preventive Maintenance ",
     description:
        "Scheduled inspection and maintenance to prevent HVAC breakdowns and extend system life. ",
-    
+    icon: SERVICES_ICONS.hvacPreventive,
+    image: SERVICES_IMAGES.hvacPreventive,
   },
 
   {
@@ -153,7 +161,8 @@ export const SERVICES = [
     title: " HVAC Performance Inspection ",
     description:
        "Inspection of HVAC systems to evaluate operating performance against manufacturer specifications.",
-    
+    icon: SERVICES_ICONS.hvacPerformance,
+    image: SERVICES_IMAGES.hvacPerformance,
   },
   
   {
@@ -161,6 +170,7 @@ export const SERVICES = [
     title: "HVAC System Health Check",
     description:
        "Comprehensive check-up of HVAC components to identify wear, inefficiencies, or potential failures.",
+    icon: SERVICES_ICONS.hvacSystem,
     
   },
 
@@ -169,7 +179,7 @@ export const SERVICES = [
     title: "Duct Inspection & Condition Assessment",
     description:
        " Visual and instrument-based inspection of ductwork interiors to assess cleanliness and structural condition.",
-    
+    icon: SERVICES_ICONS.ductInspection,
   },
 
   {
@@ -177,7 +187,7 @@ export const SERVICES = [
     title: "HVAC Energy Efficiency Assessment",
     description:
        "Evaluation of HVAC energy consumption and system efficiency, with recommendations for improvement.",
-    
+    icon: SERVICES_ICONS.hvacEnergy,
   },
 
   {
@@ -185,7 +195,7 @@ export const SERVICES = [
     title: "Mold & Contaminant Removal",
     description:
        "Identification and removal of mold, mildew, and other contaminants from HVAC systems and ductwork.",
-    
+    icon: SERVICES_ICONS.mold,
   },
 
   {
@@ -194,6 +204,7 @@ export const SERVICES = [
     image: SERVICES_IMAGES.airBalancing,
     description:
        "Our air balancing service measures and adjusts airflow throughout HVAC systems to ensure uniform air distribution. This improves occupant comfort, system performance, and energy efficiency while reducing operational costs. ",
+    icon: SERVICES_ICONS.airBalancing,
   },
 
   {
@@ -202,6 +213,7 @@ export const SERVICES = [
     image: SERVICES_IMAGES.robot,
     description:
        "A remote-operated robotic crawler with a rotary brush head and control unit with monitor, used to mechanically clean the interior of ductwork",
+    // icon: SERVICES_ICONS.
   },
 
   {
