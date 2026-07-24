@@ -1,25 +1,21 @@
-import { Hanken_Grotesk, Montserrat, DM_Sans } from "next/font/google";
-import { Toaster } from "react-hot-toast";
-
+// import { Hanken_Grotesk, Montserrat, DM_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-import "./globals.css";
+// const hankenGrotesk = Hanken_Grotesk({
+//   variable: "--font-hanken-grotesk",
+//   subsets: ["latin"],
+// });
 
-const hankenGrotesk = Hanken_Grotesk({
-  variable: "--font-hanken-grotesk",
-  subsets: ["latin"],
-});
+// const montserrat = Montserrat({
+//   variable: "--font-montserrat",
+//   subsets: ["latin"],
+// });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-});
+// const dmSans = DM_Sans({
+//   variable: "--font-dm-sans",
+//   subsets: ["latin"],
+// });
 
 export const metadata = {
   title: "Air Care",
@@ -29,9 +25,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${hankenGrotesk.variable} ${montserrat.variable} ${dmSans.variable}`}
-      >
+     
+      <body>
         <Header />
 
         <main>{children}</main>
