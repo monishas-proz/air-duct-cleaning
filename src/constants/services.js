@@ -171,6 +171,7 @@ export const SERVICES = [
     description:
        "Comprehensive check-up of HVAC components to identify wear, inefficiencies, or potential failures.",
     icon: SERVICES_ICONS.hvacSystem,
+    image: SERVICES_IMAGES.hvacSystem,
     
   },
 
@@ -180,6 +181,7 @@ export const SERVICES = [
     description:
        " Visual and instrument-based inspection of ductwork interiors to assess cleanliness and structural condition.",
     icon: SERVICES_ICONS.ductInspection,
+    image: SERVICES_IMAGES.ductInspection,
   },
 
   {
@@ -188,6 +190,7 @@ export const SERVICES = [
     description:
        "Evaluation of HVAC energy consumption and system efficiency, with recommendations for improvement.",
     icon: SERVICES_ICONS.hvacEnergy,
+    image: SERVICES_IMAGES.hvacEnergy,
   },
 
   {
@@ -196,6 +199,7 @@ export const SERVICES = [
     description:
        "Identification and removal of mold, mildew, and other contaminants from HVAC systems and ductwork.",
     icon: SERVICES_ICONS.mold,
+    image: SERVICES_IMAGES.mold,
   },
 
   {

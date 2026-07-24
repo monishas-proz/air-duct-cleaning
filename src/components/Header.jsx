@@ -16,7 +16,7 @@ export default function Header() {
            href="/"
            className="font-heading text-lg font-bold text-primary-800 sm:text-xl lg:text-2xl"
            >
-          AIR CARE MANAGEMENT 
+          ADHI ROBOTIC SERVICES
         </Link>
 
         <nav className="hidden lg:block">

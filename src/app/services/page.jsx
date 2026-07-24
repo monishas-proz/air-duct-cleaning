@@ -1,4 +1,4 @@
-import BeforeAfterSection from "@/components/sections/services/BeforeAfterSection";
+import BeforeAfterSection from "@/components/sections/gallery/BeforeAfterSection";
 import CardSection from "@/components/sections/services/CardSection";
 import DisinfectionSection from "@/components/sections/services/DisinfectionSection";
 import ServicesHeroSection from "@/components/sections/services/ServicesHeroSection";
@@ -12,7 +12,6 @@ export default function ServicePage(){
             <ServicesHeroSection />
             <CardSection />
             <DisinfectionSection />
-            <BeforeAfterSection />
             <ServicesTestimonialSection />
         </>
     )

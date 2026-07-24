@@ -1,5 +1,6 @@
 // import { Hanken_Grotesk, Montserrat, DM_Sans } from "next/font/google";
 import Header from "@/components/Header";
+import "./globals.css";
 import Footer from "@/components/Footer";
 
 // const hankenGrotesk = Hanken_Grotesk({
@@ -28,20 +29,8 @@ export default function RootLayout({ children }) {
      
       <body>
         <Header />
-
         <main>{children}</main>
-
         <Footer />
-
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 3000,
-            style: {
-              borderRadius: "12px",
-            },
-          }}
-        />
       </body>
     </html>
   );

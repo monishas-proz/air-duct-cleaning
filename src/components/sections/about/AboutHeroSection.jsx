@@ -14,9 +14,9 @@ export default function AboutHeroSection() {
           <div>
             <div className="flex flex-col gap-6">
 
-              <span className="caption w-fit rounded bg-primary-500 px-3 py-1 font-semibold uppercase tracking-[0.12em] text-neutral-900">
+              {/* <span className="caption w-fit rounded bg-primary-500 px-3 py-1 font-semibold uppercase tracking-[0.12em] text-neutral-900">
                 EST. 2018
-              </span>
+              </span> */}
 
               <h1 className="display tracking-[-0.03em] text-neutral-900">
                 <span className="block">

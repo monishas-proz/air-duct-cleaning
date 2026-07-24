@@ -61,7 +61,7 @@ export const WHY_CHOOSE = {
 export const ABOUT_STATS = [
   {
     id: 1,
-    value: "8",
+    value: "8+",
     label: "YEARS EXPERIENCE",
     color: "primary",
   },

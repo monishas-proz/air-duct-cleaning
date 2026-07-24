@@ -61,8 +61,8 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h2 className="heading-2 whitespace-nowrap text-primary-700">
-              Air Care Management
+            <h2 className="heading-3 whitespace-nowrap text-primary-700">
+              ADHI ROBOTIC SERVICES
             </h2>
 
             <p className="body-md mt-5 max-w-sm text-neutral-600 lg:mt-6">
@@ -72,7 +72,7 @@ export default function Footer() {
               spaces.
             </p>
 
-            <div className="mt-8 flex items-center gap-5">
+            {/* <div className="mt-8 flex items-center gap-5">
               {socialIcons.map(({ icon, alt }) => (
                 <Image
                   key={alt}
@@ -83,7 +83,7 @@ export default function Footer() {
                   className="cursor-pointer"
                 />
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Quick Links */}
