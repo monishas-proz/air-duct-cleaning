@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
       // <body
       //   className={`${hankenGrotesk.variable} ${montserrat.variable} ${dmSans.variable}`}
       // >
-    <body>
+      <body>
         <Header />
         <main>{children}</main>
         <Footer />
