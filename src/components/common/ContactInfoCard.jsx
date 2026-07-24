@@ -75,7 +75,7 @@ export default function ContactInfoCard() {
                           ? "noopener noreferrer"
                           : undefined
                       }
-                      className="body-lg break-all text-neutral-900 transition-colors hover:text-primary-700"
+                      className="caption break-all text-neutral-900 transition-colors hover:text-primary-700"
                     >
                       {value}
                     </a>
@@ -97,7 +97,7 @@ export default function ContactInfoCard() {
                         ? "noopener noreferrer"
                         : undefined
                     }
-                    className="body-lg break-all text-neutral-900 transition-colors hover:text-primary-700"
+                    className="caption break-all text-neutral-900 transition-colors hover:text-primary-700"
                   >
                     {item.value}
                   </a>

@@ -1,6 +1,9 @@
 export default function FormField({
   label,
+  name,
   type = "text",
+  value = "",
+  onChange,
   placeholder = "",
   options = [],
   rows = 5,
@@ -27,18 +30,19 @@ export default function FormField({
   return (
     <div>
       {/* Label */}
-
       <label className="caption font-semibold uppercase tracking-[0.08em] text-neutral-600">
         {label}
       </label>
 
       {/* Select */}
-
       {type === "select" ? (
-        <select className={inputClasses} defaultValue="">
-          <option value="">
-            Select a Service
-          </option>
+        <select
+          name={name}
+          value={value}
+          onChange={onChange}
+          className={inputClasses}
+        >
+          <option value="">Select a Service</option>
 
           {options.map((option) => (
             <option
@@ -50,25 +54,25 @@ export default function FormField({
           ))}
         </select>
       ) : type === "textarea" ? (
-
         /* Textarea */
-
         <textarea
+          name={name}
+          value={value}
+          onChange={onChange}
           rows={rows}
           placeholder={placeholder}
           className={inputClasses}
         />
-
       ) : (
-
         /* Input */
-
         <input
+          name={name}
           type={type}
+          value={value}
+          onChange={onChange}
           placeholder={placeholder}
           className={inputClasses}
         />
-
       )}
     </div>
   );

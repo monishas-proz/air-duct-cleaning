@@ -66,6 +66,41 @@ import BeforeImg from "@/assets/images/services/Kitchen Duct_Cleaning Before.jpe
 import AfterImg from "@/assets/images/services/Kitchen Duct_Cleaning After.jpeg";
 import Workstation from "@/assets/images/services/Workstation.jpeg";
 import Robot from "@/assets/images/services/Cleaning Robot.jpeg";
+import AC_Commissioning from "@/assets/icons/AC_Commissioning.png";
+import AC_Installation from "@/assets/icons/AC_Installation.png";
+import AHU_Coil from "@/assets/icons/AHU Coil.svg";
+import Carpet_Cleaning from "@/assets/icons/Carpet Cleaning.svg";
+import Centralized from "@/assets/icons/Centralized.png";
+import Ducting_Solutions from "@/assets/icons/Ducting_Solutions.png";
+import Facility from "@/assets/icons/Facility.png";
+import Floor_Cleaning from "@/assets/icons/Floor_Cleaning.svg";
+import HVAC_Duct_leakage from "@/assets/icons/HVAC_Duct leakage.svg";
+import HVAC_Energy from "@/assets/icons/HVAC_Energy.svg";
+import HVAC_Inspection from "@/assets/icons/HVAC_Inspection.png";
+import Duct_Inspection from "@/assets/icons/Duct_Inspection.svg";
+import HVAC_Performance from "@/assets/icons/HVAC_Performance.svg";
+import HVAC_Preventive from "@/assets/icons/HVAC_Preventive.svg";
+import HVAC_System from "@/assets/icons/HVAC_System.svg";
+import Improvement from "@/assets/icons/improvement.svg";
+import Indoor_Air_Quality from "@/assets/icons/Indoor_Air_Quality.svg";
+import Mold from "@/assets/icons/Mold.svg";
+import Piping from "@/assets/icons/Piping Services.png";
+import Sanitization from "@/assets/icons/Sanitization.svg";
+import AHU_CoilImg from "@/assets/images/services/AHU_Coil.jpg";
+import Carpet_cleaningImg from "@/assets/images/services/Carpet_Cleaning.jpg";
+import Duct_InspectionImg from "@/assets/images/services/Duct_Inspection.jpg";
+import Duct_LeakageImg from "@/assets/images/services/Duct_Leakage.jpg";
+import Floor_CleaningImg from "@/assets/images/services/Floor_Cleaning.jpg";
+import HVAC_EnergyImg from "@/assets/images/services/HVAC_Energy.jpg";
+import HVAC_PerformanceImg from "@/assets/images/services/HVAC_Performance.jpg";
+import HVAC_PreventiveImg from "@/assets/images/services/HVAC_Preventive.jpg";
+import HVAC_SystemImg from "@/assets/images/services/HVAC_System.jpg";
+import Indoor_AirQualityImg from "@/assets/images/services/Indoor_AirQuality.jpg";
+import MoldImg from "@/assets/images/services/Mold.jpg";
+import SanitizationImg from "@/assets/images/services/Office_Sanitization.jpg";
+import ImprovementImg from "@/assets/images/services/Quality_Improvement.jpg";
+
+
 
 export const IMAGES = {
   heroImage: HeroImage,
@@ -97,7 +132,15 @@ export const HOME_ICONS ={
    safetyStandards: Safety,
    support: Support,
    workmanShip: WorkmanShip,
-   certified: FooterIcon3
+   certified: FooterIcon3,
+   acInstallation: AC_Installation,
+   acCommissioning: AC_Commissioning,
+   hvacPreventive: HVAC_Preventive,
+   ducting: Ducting_Solutions,
+   piping: Piping,
+   centralized: Centralized,
+   hvacInspection:HVAC_Inspection,
+   facility: Facility
 }; 
 
 export const ABOUT_ICONS = {
@@ -116,7 +159,20 @@ export const SERVICES_ICONS = {
   testing: Testing,
   storage: Storage,
   hydronic: HydronicIcon,
-  disinfectionIcon: DisinfectionIcon
+  disinfectionIcon: DisinfectionIcon,
+  ahuCoil: AHU_Coil,
+  ductleakage: HVAC_Duct_leakage,
+  floorCleaning: Floor_Cleaning,
+  carpetCleaning: Carpet_Cleaning,
+  sanitization:Sanitization,
+  indoorAirQuality: Indoor_Air_Quality,
+  airQuality: Improvement,
+  hvacPreventive: HVAC_Preventive,
+  hvacPerformance: HVAC_Inspection,
+  hvacSystem: HVAC_System,
+  ductInspection: Duct_Inspection,
+  hvacEnergy: HVAC_Energy,
+  mold: Mold
 }
 
 export const SERVICES_IMAGES = {
@@ -131,7 +187,20 @@ export const SERVICES_IMAGES = {
     beforeImg: BeforeImg,
     afterImg: AfterImg,
     workstation: Workstation,
-    robot: Robot
+    robot: Robot,
+    ahuCoil: AHU_CoilImg,
+    carpetCleaning: Carpet_cleaningImg,
+    ductInspection: Duct_InspectionImg,
+    ductleakage: Duct_LeakageImg,
+    floorCleaning: Floor_CleaningImg,
+    hvacEnergy: HVAC_EnergyImg,
+    hvacPerformance: HVAC_PerformanceImg,
+    hvacPreventive: HVAC_PreventiveImg,
+    hvacSystem: HVAC_SystemImg,
+    indoorAirQuality: Indoor_AirQualityImg,
+    mold: MoldImg,
+    sanitization: SanitizationImg,
+    improvement: ImprovementImg
 }
 
 export const INDUSTRIES_ICONS = {
