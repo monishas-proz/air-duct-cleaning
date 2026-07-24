@@ -39,6 +39,7 @@ export default function AboutSection() {
                 <Reveal
                   key={item.id}
                   delay={index * 150}
+                 
                 >
                   <div className="flex items-stretch gap-4">
                     <div
@@ -73,15 +74,17 @@ export default function AboutSection() {
         </Reveal>
 
         {/* Right Image */}
-        <Reveal delay={200} className="flex-1">
+        <div className="w-full h-full">
+        <Reveal delay={200} className="w-full h-full">
           <div className="image-hover overflow-hidden rounded-xl">
             <Image
               src={IMAGES.aboutImage}
               alt="About Air Care Management"
-              className="h-auto w-full object-cover"
+              className="h-full w-full object-fill"
             />
           </div>
         </Reveal>
+        </div>
 
       </div>
     </section>

@@ -19,7 +19,7 @@ export default function Button({
   };
 
  const baseClasses =
-  "btn-effect inline-flex items-center justify-center gap-2 rounded-md font-semibold cursor-pointer";
+  "btn-effect inline-flex items-center justify-center gap-2 rounded-md font-semibold";
 
   const variants = {
     primary:

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import ScrollLink from "@/components/common/ScrollLink";
 import Image from "next/image";
 import toast from "react-hot-toast";
 
@@ -95,12 +95,12 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {QUICK_LINKS.map((item) => (
                 <li key={item.id}>
-                  <Link
+                  <ScrollLink
                     href={item.path}
                     className="link-hover body-md text-neutral-700 hover:text-primary-700"
                   >
                     {item.title}
-                  </Link>
+                  </ScrollLink>
                 </li>
               ))}
             </ul>
@@ -115,12 +115,12 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {SERVICES_LINKS.map((item) => (
                 <li key={item.id}>
-                  <Link
+                  <ScrollLink
                     href={item.path}
                     className="link-hover body-md text-neutral-700 hover:text-primary-700"
                   >
                     {item.title}
-                  </Link>
+                  </ScrollLink>
                 </li>
               ))}
             </ul>

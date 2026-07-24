@@ -99,7 +99,8 @@ export const SERVICES = [
     title: "Hydronic Balancing of HVAC Chilled Water Systems",
     description:
        "Balancing of chilled water flow rates across HVAC circuits to ensure uniform cooling and reduce energy waste.",
-    
+    icon: SERVICES_ICONS.hydronicIcon,
+    image: SERVICES_IMAGES.hydronicBalancing,
   },
 
   {
@@ -217,7 +218,7 @@ export const SERVICES = [
     image: SERVICES_IMAGES.robot,
     description:
        "A remote-operated robotic crawler with a rotary brush head and control unit with monitor, used to mechanically clean the interior of ductwork",
-    // icon: SERVICES_ICONS.
+    icon: SERVICES_ICONS.ductCleaning,
   },
 
   {
@@ -225,8 +226,12 @@ export const SERVICES = [
     title: "Kitchen Duct Cleaning",
     image: SERVICES_IMAGES.afterImg,
     description:
-       "A forwarded field photo explicitly labeled Kitchen Duct cleaning, showing grease/soot residue inside a duct section"
+       "A forwarded field photo explicitly labeled Kitchen Duct cleaning, showing grease/soot residue inside a duct section",
+    icon: SERVICES_ICONS.kitchenDuct 
+    
   },
+
+
 
   {
     id: 24,
@@ -234,6 +239,7 @@ export const SERVICES = [
     image: SERVICES_IMAGES.workstation,
     description:
       "Office desks, monitors, and chairs wrapped in plastic sheeting to protect equipment from dust/debris while overhead HVAC ducts are cleaned",
+    icon: SERVICES_ICONS.workstationIcon 
   }
 
 ];

@@ -6,8 +6,8 @@ export default function Reveal({
   children,
   animation = "up",
   delay = 0,
-  duration = 700,
-  distance = 60,
+  duration = 500,
+  distance = 30,
   className = "",
 }) {
   const { ref, isVisible } = useInView();

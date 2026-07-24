@@ -1,4 +1,4 @@
-import AboutImage from "@/assets/images/home/about-image.svg";
+import AboutImage from "@/assets/images/home/About_image.svg";
 import HeroImage from "@/assets/images/home/Hero_Image.svg";
 import HVAC from "@/assets/icons/HVAC.svg";
 import IAQ from "@/assets/icons/IAQ.svg";
@@ -99,6 +99,12 @@ import Indoor_AirQualityImg from "@/assets/images/services/Indoor_AirQuality.jpg
 import MoldImg from "@/assets/images/services/Mold.jpg";
 import SanitizationImg from "@/assets/images/services/Office_Sanitization.jpg";
 import ImprovementImg from "@/assets/images/services/Quality_Improvement.jpg";
+import airBalancingIcon from "@/assets/icons/air_Balancing.png";
+import ductCleaningIcon from "@/assets/icons/ductCleaningIcon.png";
+import hydronicIcon from "@/assets/icons/Hydronic_Icon.png";
+import kitchenDuctIcon from "@/assets/icons/kitchen_DuctIcon.png";
+import WorkstationIcon from "@/assets/icons/Workstation_Icon.png";
+import Hydronic_BalancingImg from "@/assets/images/services/Hydronic_Balancing.png";
 
 
 
@@ -172,7 +178,12 @@ export const SERVICES_ICONS = {
   hvacSystem: HVAC_System,
   ductInspection: Duct_Inspection,
   hvacEnergy: HVAC_Energy,
-  mold: Mold
+  mold: Mold,
+  airBalancing : airBalancingIcon,
+  ductCleaning: ductCleaningIcon,
+  hydronicIcon: hydronicIcon,
+  kitchenDuct: kitchenDuctIcon,
+  workstationIcon: WorkstationIcon
 }
 
 export const SERVICES_IMAGES = {
@@ -200,7 +211,8 @@ export const SERVICES_IMAGES = {
     indoorAirQuality: Indoor_AirQualityImg,
     mold: MoldImg,
     sanitization: SanitizationImg,
-    improvement: ImprovementImg
+    improvement: ImprovementImg,
+    hydronicBalancing: Hydronic_BalancingImg
 }
 
 export const INDUSTRIES_ICONS = {
