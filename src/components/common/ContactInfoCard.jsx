@@ -97,7 +97,7 @@ export default function ContactInfoCard() {
                         ? "noopener noreferrer"
                         : undefined
                     }
-                    className="caption break-all text-neutral-900 transition-colors hover:text-primary-700"
+                    className="caption text-neutral-900 transition-colors hover:text-primary-700"
                   >
                     {item.value}
                   </a>

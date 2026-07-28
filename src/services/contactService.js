@@ -1,7 +1,7 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function submitContact(data) {
-  const response = await fetch(`${API_URL}/api/contact`, {
+  const response = await fetch(`${API_URL}/contact`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

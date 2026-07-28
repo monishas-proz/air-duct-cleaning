@@ -19,7 +19,7 @@ export default function Button({
   };
 
  const baseClasses =
-  "btn-effect inline-flex items-center justify-center gap-2 rounded-md font-semibold";
+  "btn-effect inline-flex items-center justify-center gap-2 rounded-md font-semibold cursor-pointer";
 
   const variants = {
     primary:
@@ -42,6 +42,9 @@ export default function Button({
 
     chip:
       "rounded-full border border-neutral-200 bg-white px-5 py-2 body-sm font-medium text-neutral-700",
+
+    danger:
+      "bg-red-600 text-white hover:bg-red-700",
   };
 
   const classes = `${baseClasses} btn-${variant} ${variants[variant]} ${sizes[size]} ${className}`;

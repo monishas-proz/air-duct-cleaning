@@ -7,10 +7,10 @@ export default function GalleryImageCard({
 }) {
   return (
     <div className={`image-hover rounded-lg ${className}`}>
-      <Image
+      <img
         src={image}
         alt={alt}
-        className="h-full w-full object-cover"
+        className="h-72 w-full object-cover"
       />
     </div>
   );

@@ -4,8 +4,45 @@ import Reveal from "@/components/common/Reveal";
 import FeaturedProjectCard from "@/components/common/FeaturedProjectCard";
 import GalleryImageCard from "@/components/common/GalleryImageCard";
 import { GALLERY_PROJECTS } from "@/constants/gallery";
+import { useEffect, useState } from "react";
+import { getCategoryImages } from "@/services/public/categoryImageService";
 
-export default function GalleryPortfolioSection() {
+export default function GalleryPortfolioSection({selectedCategory}) {
+
+    const [images, setImages] = useState([]);
+
+      useEffect(() => {
+    async function loadImages() {
+      try {
+        const data = await getCategoryImages(selectedCategory);
+        setImages(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    loadImages();
+  }, [selectedCategory]);
+
+  console.log(images);
+
+  const galleryProjects = images.map((item) => ({
+  id: item.id,
+  image: `${process.env.NEXT_PUBLIC_API_URL.replace(
+    "/api",
+    ""
+  )}/uploads/categories/${item.categoryId}/${item.image}`,
+  category: "Gallery",
+  title: "Our Latest Work",
+  description:
+    "Professional HVAC installation, maintenance, and repair projects.",
+}));
+
+const featured = galleryProjects[0];
+const rightImages = galleryProjects.slice(1, 3);
+const middleImages = galleryProjects.slice(3, 6);
+const bottomImages = galleryProjects.slice(6, 8);
+
   return (
     <section className="section pt-0">
       <div className="container">
@@ -13,24 +50,28 @@ export default function GalleryPortfolioSection() {
         {/* Top Section */}
         <div className="grid gap-4 lg:grid-cols-[2fr_1fr]">
 
-          <Reveal animation="left">
-            <FeaturedProjectCard
-              image={GALLERY_PROJECTS[0].image}
-              category={GALLERY_PROJECTS[0].category}
-              title={GALLERY_PROJECTS[0].title}
-              description={GALLERY_PROJECTS[0].description}
-            />
-          </Reveal>
+          {featured && (
+            <Reveal animation="left">
+              <FeaturedProjectCard
+                image={featured.image}
+                category={featured.category}
+                title={featured.title}
+                description={featured.description}
+              />
+            </Reveal>
+          )}
 
           <div className="grid gap-4">
 
-            <Reveal animation="right" delay={100}>
-              <GalleryImageCard image={GALLERY_PROJECTS[1].image} />
-            </Reveal>
-
-            <Reveal animation="right" delay={200}>
-              <GalleryImageCard image={GALLERY_PROJECTS[2].image} />
-            </Reveal>
+            {rightImages.map((project, index) => (
+              <Reveal
+                key={project.id}
+                animation="right"
+                delay={(index + 1) * 100}
+              >
+                <GalleryImageCard image={project.image} />
+              </Reveal>
+            ))}
 
           </div>
 
@@ -39,9 +80,9 @@ export default function GalleryPortfolioSection() {
         {/* Middle Row */}
         <div className="mt-4 grid gap-4 md:grid-cols-3">
 
-          {GALLERY_PROJECTS.slice(3, 6).map((project, index) => (
+          {middleImages.map((project, index) => (
             <Reveal
-              key={index}
+              key={project.id}
               animation="up"
               delay={index * 120}
             >
@@ -54,9 +95,9 @@ export default function GalleryPortfolioSection() {
         {/* Bottom Row */}
         <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_1fr]">
 
-          {GALLERY_PROJECTS.slice(6, 8).map((project, index) => (
+          {bottomImages.map((project, index) => (
             <Reveal
-              key={index}
+              key={project.id}
               animation="up"
               delay={index * 120}
             >

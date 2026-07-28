@@ -1,7 +1,8 @@
 // import { Hanken_Grotesk, Montserrat, DM_Sans } from "next/font/google";
-import Header from "@/components/Header";
+
 import "./globals.css";
-import Footer from "@/components/Footer";
+
+import LayoutWrapper from "@/components/LayoutWrapper";
 
 // const hankenGrotesk = Hanken_Grotesk({
 //   variable: "--font-hanken-grotesk",
@@ -25,12 +26,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-     
+     <html lang="en">
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <LayoutWrapper>
+          {children}
+        </LayoutWrapper>
       </body>
     </html>
   );
