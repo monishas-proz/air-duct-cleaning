@@ -64,14 +64,15 @@ export default function ImageForm({
           type="file"
           accept=".jpg,.jpeg,.png,.webp"
           onChange={(e) => setImage(e.target.files[0])}
-          className="block w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm file:mr-4 file:rounded-md file:border-0 file:bg-emerald-600 file:px-4 file:py-2 file:text-white hover:file:bg-emerald-700"
+          className="block w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm file:mr-4 file:rounded-md file:border-0 file:bg-primary-800 file:px-4 file:py-2 file:text-white hover:file:bg-primary-700 file:cursor-pointer cursor-pointer"
         />
+        
       </div>
 
       <div className="flex justify-end gap-3">
         <Button
           type="button"
-          variant="secondary"
+          variant="outlinePrimary"
           onClick={onClose}
         >
           Cancel

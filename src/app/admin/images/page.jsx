@@ -101,7 +101,7 @@ export default function ImagesPage() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none transition focus:border-emerald-600"
+              className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none transition focus:border-emerald-600 cursor-pointer"
             >
               <option value="">Select Category</option>
               {categories.map((category) => (

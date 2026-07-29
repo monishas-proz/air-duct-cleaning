@@ -89,8 +89,8 @@ export const SERVICES = [
     description:
       "Professional Indoor Air Quality (IAQ) monitoring for VOCs, particulates, and biological contaminants with detailed lab reports.",
     icon: HOME_ICONS.iaqTesting,
-    color: "secondary",
-    className: "bg-secondary-50"
+    color: "primary",
+    className: "bg-primary-50"
   },
   {
     id: 3,
@@ -98,8 +98,8 @@ export const SERVICES = [
     description:
       "High-capacity sanitation for factories, warehouses, and clean-rooms using advanced electrostatic technology.",
     icon: HOME_ICONS.industrialSanitation,
-    color: "accent",
-    className: "bg-amber-50"
+    color: "primary",
+    className: "bg-primary-50"
   },
 
   {

@@ -16,7 +16,7 @@ export default function Topbar({ onMenuClick }) {
     <header className="sticky top-0 z-40 flex h-20 items-center justify-between border-b border-neutral-200 bg-white px-4 shadow-sm md:px-8">
       <button
         onClick={onMenuClick}
-        className="rounded-lg p-2 transition hover:bg-neutral-100 lg:hidden"
+        className="rounded-lg p-2 transition hover:bg-neutral-100 lg:hidden cursor-pointer"
       >
         <Menu size={24} />
       </button>

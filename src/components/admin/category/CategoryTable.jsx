@@ -1,11 +1,15 @@
+
+import ActionMenu from "@/components/admin/ui/ActionMenu";
+
 export default function CategoryTable({
   categories,
   onEdit,
   onDelete,
 }) {
+
   return (
-    <div className="h-full overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm">
-      <div className="max-h-[75vh] overflow-y-auto overflow-x-auto">
+    <div className="flex h-full flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm">
+      <div className="flex-1 overflow-y-auto overflow-x-auto">
         <table className="min-w-full border-collapse">
           <thead className="sticky top-0 z-10 bg-neutral-100 shadow-sm">
             <tr>
@@ -55,24 +59,11 @@ export default function CategoryTable({
                     {new Date(category.createdAt).toLocaleDateString("en-IN")}
                   </td>
 
-                  <td className="px-6 py-4">
-                    <div className="flex items-center justify-center gap-5">
-                      <button
-                        type="button"
-                        onClick={() => onEdit(category)}
-                        className="font-medium text-blue-600 transition-colors hover:text-blue-800"
-                      >
-                        Edit
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => onDelete(category)}
-                        className="font-medium text-red-600 transition-colors hover:text-red-800"
-                      >
-                        Delete
-                      </button>
-                    </div>
+                  <td className="px-6 py-4 text-center">
+                    <ActionMenu
+                      onEdit={() => onEdit(category)}
+                      onDelete={() => onDelete(category)}
+                    />
                   </td>
                 </tr>
               ))

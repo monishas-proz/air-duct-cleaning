@@ -5,9 +5,12 @@ import { useRouter } from "next/navigation";
 import { loginAdmin } from "@/services/adminService";
 import toast from "react-hot-toast";
 import Button from "../common/Button";
+import useRedirectIfAuthenticated from "@/hooks/useRedirectIfAuthenticated";
 
 export default function LoginForm() {
   const router = useRouter();
+
+  useRedirectIfAuthenticated();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -41,7 +44,7 @@ export default function LoginForm() {
 
       toast.success(data.message);
 
-      router.push("/admin/dashboard");
+      router.push("/admin/categories");
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -88,10 +91,21 @@ export default function LoginForm() {
         />
       </div>
 
+      <p className="mb-6 -mt-2 text-right">
+        <button
+          type="button"
+          onClick={() => router.push("/admin/forgot-password")}
+          className="text-sm text-primary-700 hover:underline cursor-pointer"
+        >
+          Forgot Password?
+        </button>
+      </p>
+
       <Button
         variant="primary"
         type="submit"
         disabled={loading}
+        className="w-full"
       >
         {loading ? "Logging in..." : "Login"}
       </Button>

@@ -67,7 +67,7 @@ export default function ImageTable({
                     <button
                       type="button"
                       onClick={() => onDelete(image)}
-                      className="font-medium text-red-600 transition-colors hover:text-red-800"
+                      className="font-medium text-red-600 transition-colors hover:text-red-800 cursor-pointer"
                     >
                       Delete
                     </button>

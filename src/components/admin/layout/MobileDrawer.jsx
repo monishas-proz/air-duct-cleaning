@@ -38,7 +38,7 @@ export default function MobileDrawer({
       />
 
       <aside
-        className={`fixed left-0 top-0 z-50 h-screen w-72 bg-white shadow-2xl transition-transform duration-300
+        className={`fixed left-0 top-0 z-50 h-screen w-72 bg-primary-800 shadow-2xl transition-transform duration-300
         ${
           open
             ? "translate-x-0"
@@ -46,11 +46,15 @@ export default function MobileDrawer({
         }`}
       >
         <div className="border-b border-neutral-200 p-6">
-          <h2 className="text-xl font-bold text-primary-700">
+          <Link href="/"
+                className="cursor-pointer"
+          >
+          <h2 className="text-xl font-bold text-white">
             Adhi Robotic Services
           </h2>
+          </Link>
 
-          <p className="text-neutral-500">
+          <p className="text-white">
             Admin Panel
           </p>
         </div>
@@ -64,8 +68,8 @@ export default function MobileDrawer({
               className={`mb-3 block rounded-xl px-5 py-4 transition
               ${
                 pathname === item.href
-                  ? "bg-primary-700 text-white"
-                  : "hover:bg-primary-50"
+                 ? "bg-primary-700 text-white shadow-lg"
+                  : "text-white hover:bg-primary-700 hover:text-white"
               }`}
             >
               {item.title}

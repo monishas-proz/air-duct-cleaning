@@ -8,6 +8,7 @@ export default function Button({
   variant = "primary",
   className = "",
   onClick,
+  disabled = false,
   icon,
   iconPosition = "right",
   size = "md",
@@ -19,11 +20,11 @@ export default function Button({
   };
 
  const baseClasses =
-  "btn-effect inline-flex items-center justify-center gap-2 rounded-md font-semibold cursor-pointer";
+  "btn-effect inline-flex items-center justify-center gap-2 rounded-md font-semibold";
 
   const variants = {
     primary:
-"bg-primary-800 text-white",
+      "bg-primary-800 text-white",
 
     secondary:
       "border-2 border-secondary-500 text-secondary-600",
@@ -90,8 +91,13 @@ export default function Button({
   return (
     <button
       type={type}
-      className={`${classes} gap-2`}
       onClick={onClick}
+      disabled={disabled}
+      className={`${classes} gap-2 ${
+        disabled
+          ? "cursor-not-allowed opacity-50"
+          : "cursor-pointer"
+      }`}
     >
       {content}
     </button>
