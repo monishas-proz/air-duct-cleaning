@@ -1,7 +1,7 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function subscribeNewsletter(email) {
-  const response = await fetch(`${API_URL}/api/newsletter`, {
+  const response = await fetch(`${API_URL}/newsletter`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

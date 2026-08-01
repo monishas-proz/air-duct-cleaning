@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function useInView({
-  threshold = 0.3,
+  threshold = 0,
   rootMargin = "0px",
 } = {}) {
   const ref = useRef(null);
@@ -16,14 +16,17 @@ export default function useInView({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.intersectionRatio >= threshold) {
-          setIsVisible(true);
-        } else if (entry.intersectionRatio === 0) {
-          setIsVisible(false);
-        }
+        console.log(
+          "isIntersecting:",
+          entry.isIntersecting,
+          "ratio:",
+          entry.intersectionRatio
+        );
+
+        setIsVisible(entry.isIntersecting);
       },
       {
-        threshold: [0, threshold],
+        threshold,
         rootMargin,
       }
     );

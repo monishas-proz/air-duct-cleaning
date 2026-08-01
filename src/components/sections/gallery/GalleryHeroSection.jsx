@@ -2,9 +2,29 @@
 
 import Reveal from "@/components/common/Reveal";
 import Button from "@/components/common/Button";
-import { GALLERY_FILTERS, GALLERY_HERO } from "@/constants/gallery";
+import { GALLERY_HERO } from "@/constants/gallery";
+import { getCategories } from "@/services/public/categoryService";
+import { useEffect, useState } from "react";
 
-export default function GalleryHeroSection() {
+export default function GalleryHeroSection({selectedCategory, onCategoryChange}) {
+
+  const [categories, setCategories] = useState([]);
+  
+  
+  useEffect(() => {
+  async function loadCategories() {
+    try {
+      const data = await getCategories();
+      setCategories(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  loadCategories();
+}, []);
+
+
   return (
     <section className="section">
       <div className="container">
@@ -34,14 +54,24 @@ export default function GalleryHeroSection() {
 
         {/* Filter Buttons */}
         <div className="mt-14 flex flex-wrap gap-3">
-          {GALLERY_FILTERS.map((filter, index) => (
+          {[
+            { id: "all", name: "All Projects" },
+            ...categories,
+          ].map((category, index) => (
             <Reveal
-              key={filter}
+              key={category.id}
               animation="up"
               delay={index * 80}
             >
-              <Button variant="chip">
-                {filter}
+              <Button
+                variant={
+                  selectedCategory === category.id
+                    ? "primary"
+                    : "chip"
+                }
+                onClick={() => onCategoryChange(category.id)}
+              >
+                {category.name}
               </Button>
             </Reveal>
           ))}

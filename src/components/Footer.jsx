@@ -2,9 +2,8 @@
 
 import { useState } from "react";
 import ScrollLink from "@/components/common/ScrollLink";
-import Image from "next/image";
 import toast from "react-hot-toast";
-
+import ContactInfoList from "./common/ContactInfoList";
 import {
   QUICK_LINKS,
   SERVICES_LINKS,
@@ -13,46 +12,44 @@ import { HOME_ICONS } from "@/constants/assets";
 import { subscribeNewsletter } from "@/services/newsletterService";
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  const socialIcons = [
-    {
-      icon: HOME_ICONS.footerIcon1,
-      alt: "icon1",
-    },
-    {
-      icon: HOME_ICONS.footerIcon2,
-      alt: "icon2",
-    },
-    {
-      icon: HOME_ICONS.footerIcon3,
-      alt: "icon3",
-    },
-  ];
+  // const socialIcons = [
+  //   {
+  //     icon: HOME_ICONS.footerIcon1,
+  //     alt: "icon1",
+  //   },
+  //   {
+  //     icon: HOME_ICONS.footerIcon2,
+  //     alt: "icon2",
+  //   },
+  //   {
+  //     icon: HOME_ICONS.footerIcon3,
+  //     alt: "icon3",
+  //   },
+  // ];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    if (!email.trim()) {
-      toast.error("Please enter your email.");
-      return;
-    }
+  //   if (!email.trim()) {
+  //     toast.error("Please enter your email.");
+  //     return;
+  //   }
 
-    try {
-      setLoading(true);
+  //   try {
+  //     setLoading(true);
 
-      const response = await subscribeNewsletter(email);
+  //     const response = await subscribeNewsletter(email);
 
-      toast.success(response.message);
+  //     toast.success(response.message);
 
-      setEmail("");
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     setEmail("");
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <footer className="border-t border-neutral-200">
@@ -126,37 +123,15 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
+         {/* Contact */}
           <div>
             <h3 className="caption font-semibold uppercase tracking-[0.2em] text-secondary-600">
-              Newsletter
+              Contact
             </h3>
 
-            <p className="body-md mt-5 text-neutral-600">
-              Stay updated with the latest in IAQ technology and
-              maintenance tips.
-            </p>
-
-            <form
-              onSubmit={handleSubmit}
-              className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-0"
-            >
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
-                className="body-md flex-1 rounded-md border border-neutral-200 px-4 py-3 outline-none sm:rounded-r-none"
-              />
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="caption rounded-md bg-secondary-600 px-6 py-3 font-semibold text-white transition-colors duration-300 hover:bg-secondary-700 disabled:cursor-not-allowed disabled:opacity-70 sm:rounded-l-none"
-              >
-                {loading ? "Joining..." : "Join"}
-              </button>
-            </form>
+            <div className="mt-5">
+              <ContactInfoList variant="compact" />
+            </div>
           </div>
 
         </div>
@@ -165,7 +140,7 @@ export default function Footer() {
       <div className="border-t border-neutral-200 py-6 lg:py-8">
         <div className="container">
           <p className="body-sm text-center text-neutral-500">
-            © 2026 Air Care Management. Professional HVAC & IAQ Specialists.
+            © {new Date().getFullYear()} Air Care Management. Professional HVAC & IAQ Specialists.
           </p>
         </div>
       </div>

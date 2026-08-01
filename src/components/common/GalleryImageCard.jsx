@@ -1,17 +1,53 @@
-import Image from "next/image";
-
 export default function GalleryImageCard({
   image,
+  title,
+  description,
   alt = "Gallery Image",
   className = "",
 }) {
   return (
-    <div className={`image-hover rounded-lg ${className}`}>
-      <Image
+    <div className={`image-hover group rounded-lg ${className}`}>
+      {/* Image */}
+      <img
         src={image}
         alt={alt}
-        className="h-full w-full object-cover"
+        className="h-72 w-full object-cover"
       />
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/20 transition-all duration-300 group-hover:bg-black/60" />
+
+      {/* Content */}
+      <div
+        className="
+          absolute
+          bottom-0
+          left-0
+          z-10
+          w-full
+          p-6
+
+          opacity-0
+          translate-y-8
+          scale-95
+
+          transition-all
+          duration-300
+          ease-out
+
+          group-hover:opacity-100
+          group-hover:translate-y-0
+          group-hover:scale-100
+        "
+      >
+        <h3 className="heading-3 text-white">
+          {title}
+        </h3>
+
+        <p className="body-md mt-3 text-white/80">
+          {description}
+        </p>
+      </div>
     </div>
   );
 }

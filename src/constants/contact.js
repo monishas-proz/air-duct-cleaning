@@ -42,16 +42,7 @@ export const CONTACT_FORM = {
   title: "Inquire About Our Services",
 
   description:
-    "Fill out the form below and an AirCare specialist will contact you within 24 hours.",
-
-  serviceOptions: [
-    "Duct Cleaning",
-    "HVAC Maintenance",
-    "IAQ Testing",
-    "Filter Solutions",
-  ],
-
-
+    "Fill out the form below and an AirCare specialist will contact you",
   };
 
 export const CONTACT_CTA = {
