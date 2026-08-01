@@ -11,7 +11,7 @@ export default function IndustriesPage(){
           <GridSection />
           <CaseStudySection />
           <IndustriesTestimonialSection />
-          <IndustryCTASection />
+          {/* <IndustryCTASection /> */}
         </>
     )
 }

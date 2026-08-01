@@ -28,7 +28,7 @@ export default function GalleryPage(){
 
         <BeforeAfterSection />
         <GalleryTestimonialSection />
-        <GalleryCTASection />
+        {/* <GalleryCTASection /> */}
         
     </>
     )
