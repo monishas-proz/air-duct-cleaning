@@ -7,7 +7,7 @@ export default function FeaturedProjectCard({
   description,
 }) {
   return (
-    <div className="image-hover group rounded-lg">
+    <div className="image-hover group rounded-lg h-full">
       {/* Image */}
       <img
         src={image}

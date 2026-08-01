@@ -7,10 +7,20 @@ export default function useRedirectIfAuthenticated() {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("admin_token");
+    async function checkAuth() {
+      try {
+        const response = await fetch("/api/admin/auth", {
+          credentials: "include",
+        });
 
-    if (token) {
-      router.replace("/admin/categories");
+        if (response.ok) {
+          router.replace("/admin/categories");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
+
+    checkAuth();
   }, [router]);
 }

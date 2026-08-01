@@ -7,10 +7,13 @@ import toast from "react-hot-toast";
 import Button from "../common/Button";
 import { forgotPassword } from "@/services/adminService";
 import useRedirectIfAuthenticated from "@/hooks/useRedirectIfAuthenticated";
+import { validateForgotPassword } from "@/utils/validations/adminValidation";
 export default function ForgotPasswordForm() {
   const router = useRouter();
 
   useRedirectIfAuthenticated();
+
+  const [errors, setErrors] = useState({});
 
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,8 +21,13 @@ export default function ForgotPasswordForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username.trim()) {
-      toast.error("Username is required.");
+   const validation = validateForgotPassword({
+      username,
+    });
+
+    setErrors(validation.errors);
+
+    if (!validation.isValid) {
       return;
     }
 
@@ -34,7 +42,11 @@ export default function ForgotPasswordForm() {
         `/admin/verify-otp?username=${encodeURIComponent(username)}`
       );
     } catch (error) {
-      toast.error(error.message);
+      if (error.errors) {
+        setErrors(error.errors);
+      } else {
+        toast.error(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -58,9 +70,22 @@ export default function ForgotPasswordForm() {
           type="text"
           placeholder="Enter username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {
+            setUsername(e.target.value);
+
+            setErrors((prev) => ({
+              ...prev,
+              username: "",
+            }));
+          }}
           className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-600"
         />
+
+        {errors.username && (
+          <p className="mt-1 text-sm text-red-600">
+            {errors.username}
+          </p>
+        )}
       </div>
 
       <Button

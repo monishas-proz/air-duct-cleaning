@@ -14,15 +14,18 @@ export async function POST(request) {
     const { username } = body;
 
     // Validate request
-    if (!username) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Username is required.",
+   if (!username) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Username is required.",
+        errors: {
+          username: "Username is required.",
         },
-        { status: 400 }
-      );
-    }
+      },
+      { status: 400 }
+    );
+  }
 
     // Find admin
     const admin = await Admin.findOne({
@@ -33,7 +36,10 @@ export async function POST(request) {
       return NextResponse.json(
         {
           success: false,
-          message: "Admin not found.",
+          message: "Invalid username.",
+          errors: {
+            username: "Invalid username.",
+          },
         },
         { status: 404 }
       );

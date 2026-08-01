@@ -15,6 +15,16 @@ const CategoryImage = sequelize.define(
       allowNull: false,
     },
 
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+
     image: {
       type: DataTypes.STRING(255),
       allowNull: false,

@@ -1,7 +1,7 @@
 // import { Hanken_Grotesk, Montserrat, DM_Sans } from "next/font/google";
 
 import "./globals.css";
-
+import { Toaster } from "react-hot-toast";
 import LayoutWrapper from "@/components/LayoutWrapper";
 
 // const hankenGrotesk = Hanken_Grotesk({
@@ -30,6 +30,14 @@ export default function RootLayout({ children }) {
       <body>
         <LayoutWrapper>
           {children}
+
+           <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+            }}
+          />
+          
         </LayoutWrapper>
       </body>
     </html>

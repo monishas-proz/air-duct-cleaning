@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Button from "../common/Button";
 import { resetPassword } from "@/services/adminService";
 import useRedirectIfAuthenticated from "@/hooks/useRedirectIfAuthenticated";
+import { validateResetPassword } from "@/utils/validations/adminValidation";
 
 export default function ResetPasswordForm() {
   const router = useRouter();
@@ -20,6 +21,8 @@ export default function ResetPasswordForm() {
     confirmPassword: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   useEffect(() => {
     const token = sessionStorage.getItem("reset_token");
 
@@ -30,36 +33,29 @@ export default function ResetPasswordForm() {
   }, [router]);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: "",
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { newPassword, confirmPassword } = formData;
+    const validation = validateResetPassword(formData);
 
-    if (!newPassword || !confirmPassword) {
-        toast.error("Please fill all fields.");
+      setErrors(validation.errors);
+
+      if (!validation.isValid) {
         return;
-        }
-
-        const passwordRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-        if (!passwordRegex.test(newPassword)) {
-        toast.error(
-            "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character."
-        );
-        return;
-        }
-
-        if (newPassword !== confirmPassword) {
-        toast.error("Passwords do not match.");
-        return;
-        }
+      }
 
     try {
       setLoading(true);
@@ -73,7 +69,11 @@ export default function ResetPasswordForm() {
       router.replace("/admin/login");
 
    } catch (error) {
-      toast.error(error.message);
+      if (error.errors) {
+        setErrors(error.errors);
+      } else {
+        toast.error(error.message);
+      }
 
       if (error.status === 401 || error.status === 403) {
         sessionStorage.removeItem("reset_token");
@@ -106,6 +106,12 @@ export default function ResetPasswordForm() {
           placeholder="Enter new password"
           className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-600"
         />
+
+        {errors.password && (
+          <p className="mt-1 text-sm text-red-600">
+            {errors.password}
+          </p>
+        )}
       </div>
 
       <div className="mb-6">
@@ -121,6 +127,12 @@ export default function ResetPasswordForm() {
           placeholder="Confirm new password"
           className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-600"
         />
+
+        {errors.confirmPassword && (
+          <p className="mt-1 text-sm text-red-600">
+            {errors.confirmPassword}
+          </p>
+        )}
       </div>
 
       <Button

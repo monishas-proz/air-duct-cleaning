@@ -6,7 +6,7 @@ export default function TableLayout({
   return (
     <div className="flex min-h-0 flex-1 flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
       {(title || actions) && (
-        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           {title && (
             <h2 className="text-2xl font-semibold text-neutral-800">
               {title}

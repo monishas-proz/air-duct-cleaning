@@ -6,6 +6,11 @@ import { MoreVertical } from "lucide-react";
 export default function ActionMenu({
   onEdit,
   onDelete,
+  onInProgress,
+  onCloseInquiry,
+  showEdit = true,
+  type = "category",
+  status
 }) {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
@@ -33,12 +38,12 @@ export default function ActionMenu({
   return (
     <div
       ref={menuRef}
-      className="relative inline-block"
+      className="relative z-0 flex justify-center"
     >
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="rounded-md p-2 transition hover:bg-neutral-100 cursor-pointer"
+        className="cursor-pointer rounded-md p-2 transition hover:bg-neutral-100"
       >
         <MoreVertical
           size={18}
@@ -47,28 +52,81 @@ export default function ActionMenu({
       </button>
 
       {open && (
-        <div className="absolute right-full top-1/2 z-20 mr-2 w-36 -translate-y-1/2 overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-lg">
-          <button
-            type="button"
-            onClick={() => {
-              setOpen(false);
-              onEdit();
-            }}
-            className="block w-full cursor-pointer px-4 py-3 text-left text-sm text-neutral-700 transition hover:bg-neutral-100"
-          >
-            Edit
-          </button>
+        <div className="absolute right-full top-1/2 z-20 mr-2 w-40 -translate-y-1/2 overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-lg">
 
-          <button
-            type="button"
-            onClick={() => {
-              setOpen(false);
-              onDelete();
-            }}
-            className="block w-full cursor-pointer px-4 py-3 text-left text-sm text-red-600 transition hover:bg-red-50"
-          >
-            Delete
-          </button>
+          {type === "category" && (
+            <>
+              {showEdit && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpen(false);
+                    onEdit();
+                  }}
+                  className="block w-full cursor-pointer px-4 py-3 text-left text-sm text-neutral-700 transition hover:bg-neutral-100"
+                >
+                  Edit
+                </button>
+              )}
+
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  onDelete();
+                }}
+                className="block w-full cursor-pointer px-4 py-3 text-left text-sm text-red-600 hover:bg-red-50"
+              >
+                Delete
+              </button>
+            </>
+          )}
+
+          {type === "contact" && (
+          <>
+            {status === "Pending" && (
+              <>
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    onInProgress();
+                  }}
+                  className="block w-full cursor-pointer px-4 py-3 text-left text-sm hover:bg-neutral-100"
+                >
+                  In Progress
+                </button>
+
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    onCloseInquiry();
+                  }}
+                  className="block w-full cursor-pointer px-4 py-3 text-left text-sm text-red-600 hover:bg-red-50"
+                >
+                  Closed
+                </button>
+              </>
+            )}
+
+            {status === "In Progress" && (
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  onCloseInquiry();
+                }}
+                className="block w-full cursor-pointer px-4 py-3 text-left text-sm text-red-600 hover:bg-red-50"
+              >
+                Closed
+              </button>
+            )}
+
+            {status === "Closed" && (
+              <div className="px-4 py-3 text-center text-sm text-neutral-500">
+                No Actions
+              </div>
+            )}
+          </>
+        )}
+
         </div>
       )}
     </div>

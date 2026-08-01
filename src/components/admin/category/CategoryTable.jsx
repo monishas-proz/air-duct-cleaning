@@ -1,5 +1,6 @@
 
-import ActionMenu from "@/components/admin/ui/ActionMenu";
+
+import { Pencil, Trash2 } from "lucide-react";
 
 export default function CategoryTable({
   categories,
@@ -13,19 +14,19 @@ export default function CategoryTable({
         <table className="min-w-full border-collapse">
           <thead className="sticky top-0 z-10 bg-neutral-100 shadow-sm">
             <tr>
-              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left text-sm font-semibold">
+              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left">
                 S.No
               </th>
 
-              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left text-sm font-semibold">
+              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left ">
                 Category Name
               </th>
 
-              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left text-sm font-semibold">
+              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left">
                 Created At
               </th>
 
-              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-center text-sm font-semibold">
+              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-center">
                 Actions
               </th>
             </tr>
@@ -59,11 +60,28 @@ export default function CategoryTable({
                     {new Date(category.createdAt).toLocaleDateString("en-IN")}
                   </td>
 
-                  <td className="px-6 py-4 text-center">
-                    <ActionMenu
-                      onEdit={() => onEdit(category)}
-                      onDelete={() => onDelete(category)}
-                    />
+                  <td className="px-6 py-4">
+                    <div className="flex items-center justify-center gap-2">
+
+                      <button
+                        type="button"
+                        onClick={() => onEdit(category)}
+                        className="cursor-pointer rounded-lg p-2 text-blue-600 transition hover:bg-blue-50 hover:text-blue-700"
+                        title="Edit Category"
+                      >
+                        <Pencil size={18} />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => onDelete(category)}
+                        className="cursor-pointer rounded-lg p-2 text-red-600 transition hover:bg-red-50 hover:text-red-700"
+                        title="Delete Category"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+
+                    </div>
                   </td>
                 </tr>
               ))

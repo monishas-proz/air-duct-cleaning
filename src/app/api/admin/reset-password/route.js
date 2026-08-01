@@ -30,6 +30,9 @@ export async function POST(request) {
         {
         success: false,
         message: "New password is required.",
+         errors: {
+            newPassword: "New password is required.",
+          },
         },
         { status: 400 }
     );
@@ -44,6 +47,11 @@ export async function POST(request) {
         success: false,
         message:
             "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character.",
+
+          errors: {
+            newPassword:
+              "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character.",
+          },
         },
         { status: 400 }
     );

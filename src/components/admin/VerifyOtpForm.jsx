@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Button from "../common/Button";
 import { verifyOtp } from "@/services/adminService";
 import useRedirectIfAuthenticated from "@/hooks/useRedirectIfAuthenticated";
+import { validateOtp } from "@/utils/validations/adminValidation";
 export default function VerifyOtpForm() {
   const router = useRouter();
 
@@ -17,15 +18,21 @@ export default function VerifyOtpForm() {
   const username = searchParams.get("username") || "";
 
   const [otp, setOtp] = useState("");
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
 
-    if (!otp.trim()) {
-      toast.error("OTP is required.");
-      return;
-    }
+      const validation = validateOtp({
+    otp,
+  });
+
+  setErrors(validation.errors);
+
+  if (!validation.isValid) {
+    return;
+  }
 
     try {
       setLoading(true);
@@ -41,7 +48,11 @@ export default function VerifyOtpForm() {
 
       router.push("/admin/reset-password");
     } catch (error) {
-      toast.error(error.message);
+      if (error.errors) {
+        setErrors(error.errors);
+      } else {
+        toast.error(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -81,10 +92,23 @@ export default function VerifyOtpForm() {
         <input
           type="text"
           value={otp}
-          onChange={(e) => setOtp(e.target.value)}
+          onChange={(e) => {
+            setOtp(e.target.value);
+
+            setErrors((prev) => ({
+              ...prev,
+              otp: "",
+            }));
+          }}
           placeholder="Enter OTP"
           className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-600"
         />
+
+        {errors.otp && (
+          <p className="mt-1 text-sm text-red-600">
+            {errors.otp}
+          </p>
+        )}
       </div>
 
       <Button

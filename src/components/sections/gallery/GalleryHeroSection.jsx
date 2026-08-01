@@ -55,7 +55,7 @@ export default function GalleryHeroSection({selectedCategory, onCategoryChange})
         {/* Filter Buttons */}
         <div className="mt-14 flex flex-wrap gap-3">
           {[
-            { id: "all", name: "All" },
+            { id: "all", name: "All Projects" },
             ...categories,
           ].map((category, index) => (
             <Reveal

@@ -32,6 +32,10 @@ export async function POST(request) {
         {
           success: false,
           message: "Invalid username or password.",
+          errors: {
+            username: "Invalid username.",
+            password: "Invalid password.",
+          },
         },
         { status: 401 }
       );
@@ -45,6 +49,10 @@ export async function POST(request) {
         {
           success: false,
           message: "Invalid username or password.",
+          errors: {
+            username: "Invalid username.",
+            password: "Invalid password.",
+          },
         },
         { status: 401 }
       );
@@ -62,11 +70,10 @@ export async function POST(request) {
       }
     );
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         success: true,
         message: "Login successful.",
-        token,
         admin: {
           id: admin.id,
           username: admin.username,
@@ -74,6 +81,16 @@ export async function POST(request) {
       },
       { status: 200 }
     );
+
+    response.cookies.set("admin_token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24, // 1 day
+      path: "/",
+    });
+
+    return response;
   } catch (error) {
     console.error("Admin Login Error:", error);
     return NextResponse.json(

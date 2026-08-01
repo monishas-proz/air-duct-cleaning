@@ -19,10 +19,24 @@ export async function POST(request) {
 
     const formData = await request.formData();
     const categoryId = formData.get("categoryId");
+    const title = formData.get("title")?.trim();
+    const description = formData.get("description")?.trim() || "";
     const file = formData.get("image");
 
     if (!categoryId) {
-      return NextResponse.json(
+
+      if (!title) {
+        return NextResponse.json(
+          {
+            success: false,
+            message: "Title is required.",
+          },
+          {
+            status: 400,
+          }
+        );
+      }
+            return NextResponse.json(
         { success: false, message: "Category ID is required." },
         { status: 400 }
       );
@@ -73,6 +87,8 @@ export async function POST(request) {
 
     const image = await CategoryImage.create({
       categoryId,
+      title,
+      description,
       image: filename,
     });
 

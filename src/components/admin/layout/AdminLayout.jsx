@@ -24,7 +24,7 @@ export default function AdminLayout({ children }) {
       <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
         <Topbar onMenuClick={() => setDrawerOpen(true)} />
 
-        <main className="flex min-h-0 flex-1 flex-col overflow-hidden p-4 md:p-6 lg:p-8">
+        <main className="flex min-h-0 flex-1 flex-col overflow-hidden p-4 md:p-6 lg:py-8 lg:pr-8 lg:pl-4">
           {children}
         </main>
       </div>

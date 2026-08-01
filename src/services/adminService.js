@@ -4,6 +4,7 @@ export async function loginAdmin(credentials) {
   try {
     const response = await fetch(`${API_URL}/admin/login`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -13,7 +14,10 @@ export async function loginAdmin(credentials) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message);
+      const error = new Error(data.message);
+      error.status = response.status;
+      error.errors = data.errors || {};
+      throw error;
     }
 
     return data;
@@ -35,7 +39,10 @@ export async function forgotPassword(username) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message);
+      const error = new Error(data.message);
+      error.status = response.status;
+      error.errors = data.errors || {};
+      throw error;
     }
 
     return data;
@@ -57,7 +64,10 @@ export async function verifyOtp(payload) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message);
+      const error = new Error(data.message);
+      error.status = response.status;
+      error.errors = data.errors || {};
+      throw error;
     }
 
     return data;
@@ -89,10 +99,11 @@ export async function resetPassword(newPassword) {
     const data = await response.json();
 
    if (!response.ok) {
-    const error = new Error(data.message);
-    error.status = response.status;
-    throw error;
-  }
+      const error = new Error(data.message);
+      error.status = response.status;
+      error.errors = data.errors || {};
+      throw error;
+    }
 
     return data;
   } catch (error) {

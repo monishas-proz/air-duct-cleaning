@@ -6,20 +6,25 @@ import Button from "@/components/common/Button";
 import FormField from "@/components/common/FormField";
 import { CONTACT_ICONS } from "@/constants/assets";
 import { CONTACT_FORM } from "@/constants/contact";
+import { SERVICES } from "@/constants/services";
 import { submitContact } from "@/services/contactService";
+import { validateContact } from "@/utils/validations/contactValidation";
 import toast from "react-hot-toast";
 
-export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    organization: "",
-    email: "",
-    phone: "",
-    service: "",
-    message: "",
-  });
+const INITIAL_FORM_DATA = {
+  fullName: "",
+  organization: "",
+  email: "",
+  phone: "",
+  service: "",
+  message: "",
+};
 
+export default function ContactForm() {
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const serviceOptions = SERVICES.map((service) => service.title);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,28 +33,37 @@ export default function ContactForm() {
       ...prev,
       [name]: value,
     }));
+
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const validation = validateContact(formData);
+
+    setErrors(validation.errors);
+
+    if (!validation.isValid) {
+      return;
+    }
 
     try {
       setLoading(true);
 
       await submitContact(formData);
 
-      setFormData({
-        fullName: "",
-        organization: "",
-        email: "",
-        phone: "",
-        service: "",
-        message: "",
-      });
+      setFormData(INITIAL_FORM_DATA);
+      setErrors({});
 
       toast.success("Inquiry submitted successfully.");
     } catch (error) {
-      toast.error(error.message || "Something went wrong");
+      toast.error(error.message || "Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -68,9 +82,9 @@ export default function ContactForm() {
       <form
         className="mt-5"
         onSubmit={handleSubmit}
+        noValidate
       >
         {/* Row 1 */}
-
         <div className="grid gap-6 md:grid-cols-2">
           <FormField
             label="Full Name"
@@ -78,6 +92,8 @@ export default function ContactForm() {
             value={formData.fullName}
             onChange={handleChange}
             placeholder="John Doe"
+            required
+            error={errors.fullName}
           />
 
           <FormField
@@ -86,11 +102,11 @@ export default function ContactForm() {
             value={formData.organization}
             onChange={handleChange}
             placeholder="Company Ltd."
+            error={errors.organization}
           />
         </div>
 
         {/* Row 2 */}
-
         <div className="mt-3 grid gap-6 md:grid-cols-2">
           <FormField
             label="Email Address"
@@ -99,6 +115,8 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             placeholder="john@company.com"
+            required
+            error={errors.email}
           />
 
           <FormField
@@ -108,11 +126,12 @@ export default function ContactForm() {
             value={formData.phone}
             onChange={handleChange}
             placeholder="+1 (555) 000-0000"
+            required
+            error={errors.phone}
           />
         </div>
 
         {/* Service */}
-
         <div className="mt-6">
           <FormField
             label="Service Area"
@@ -120,12 +139,13 @@ export default function ContactForm() {
             type="select"
             value={formData.service}
             onChange={handleChange}
-            options={CONTACT_FORM.serviceOptions}
+            options={serviceOptions}
+            required
+            error={errors.service}
           />
         </div>
 
         {/* Message */}
-
         <div className="mt-6">
           <FormField
             label="Your Message"
@@ -135,11 +155,12 @@ export default function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             placeholder="How can we help optimize your facility's air management?"
+            required
+            error={errors.message}
           />
         </div>
 
         {/* Button */}
-
         <div className="mt-8">
           <Button
             type="submit"

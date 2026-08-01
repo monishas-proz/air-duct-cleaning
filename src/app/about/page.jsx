@@ -11,7 +11,7 @@ export default function AboutPage() {
       <PrinciplesSection />
       {/* <CertificationSection /> */}
       <TeamSection />
-      <CTASection />
+      {/* <CTASection /> */}
     </>
   );
 }

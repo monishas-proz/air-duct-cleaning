@@ -27,15 +27,18 @@ export async function POST(request) {
       where: { username },
     });
 
-    if (!admin) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Invalid username or OTP.",
+   if (!admin) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Invalid username or OTP.",
+        errors: {
+          otp: "Invalid username or OTP.",
         },
-        { status: 401 }
-      );
-    }
+      },
+      { status: 401 }
+    );
+  }
 
     // Check OTP exists
     if (!admin.otp || !admin.otpExpiresAt) {
@@ -66,7 +69,10 @@ export async function POST(request) {
       return NextResponse.json(
         {
           success: false,
-          message: "Invalid username or OTP.",
+          message: "Invalid OTP.",
+          errors: {
+            otp: "Invalid OTP.",
+          },
         },
         { status: 401 }
       );

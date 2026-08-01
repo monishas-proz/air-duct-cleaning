@@ -9,6 +9,7 @@ import Modal from "@/components/admin/ui/Modal";
 import CategoryForm from "@/components/admin/category/CategoryForm";
 import CategoryTable from "@/components/admin/category/CategoryTable";
 import TableLayout from "@/components/admin/ui/TableLayout";
+import useAdminAuth from "@/hooks/useAdminAuth";
 
 import {
   getCategories,
@@ -17,6 +18,7 @@ import {
 
 export default function CategoriesPage() {
   const router = useRouter();
+  const authLoading = useAdminAuth();
 
   const [showModal, setShowModal] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -25,25 +27,24 @@ export default function CategoriesPage() {
   const [deleteCategoryData, setDeleteCategoryData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const loadCategories = async () => {
-    try {
-      const data = await getCategories();
-      setCategories(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+ const loadCategories = async () => {
+  try {
+    const data = await getCategories();
 
-  useEffect(() => {
-    const token = localStorage.getItem("admin_token");
+    console.log("Categories Response:", data);
+    console.log("Is Array:", Array.isArray(data));
 
-    if (!token) {
-      router.replace("/admin/login");
-      return;
-    }
+    setCategories(Array.isArray(data) ? data : []);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
+   useEffect(() => {
+  if (!authLoading) {
     loadCategories();
-  }, []);
+  }
+}, [authLoading]);
 
   const handleAddCategory = () => {
     setSelectedCategory(null);
@@ -82,10 +83,14 @@ export default function CategoriesPage() {
     }
   };
 
+  if (authLoading) {
+  return null;
+}
+
   return (
     <AdminLayout>
       <div className="flex h-full flex-col gap-8">
-        <div>
+        {/* <div>
           <h1 className="text-3xl font-bold text-neutral-800">
             Welcome Back
           </h1>
@@ -93,7 +98,7 @@ export default function CategoriesPage() {
           <p className="mt-2 text-neutral-500">
             Manage your Air Care website from one place.
           </p>
-        </div>
+        </div> */}
 
         <TableLayout
           title="Categories"
@@ -135,7 +140,7 @@ export default function CategoriesPage() {
 
             <div className="flex justify-end gap-3">
               <Button
-                variant="secondary"
+                variant="modelCancel"
                 onClick={() => setDeleteModal(false)}
               >
                 Cancel

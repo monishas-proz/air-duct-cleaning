@@ -42,6 +42,17 @@ const Contact = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+
+    status: {
+      type: DataTypes.ENUM("Pending", "In Progress", "Closed"),
+      allowNull: false,
+      defaultValue: "Pending",
+    },
+
+    remarks: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
   },
   {
     tableName: "contacts",

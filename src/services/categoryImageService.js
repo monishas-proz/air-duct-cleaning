@@ -1,18 +1,18 @@
+import { handleUnauthorized } from "./apiUtils";
+
 const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/category-images`;
 
-function getToken() {
-  return localStorage.getItem("admin_token");
-}
-
-// Get Images by Category
-export async function getCategoryImages(categoryId) {
+// Get Images
+// categoryId = "all" => all images
+// categoryId = 1 => particular category
+export async function getCategoryImages(categoryId = "all") {
   const response = await fetch(`${API_URL}/${categoryId}`, {
-    headers: {
-      Authorization: `Bearer ${getToken()}`,
-    },
+     credentials: "include",
   });
 
   const data = await response.json();
+
+  if (await handleUnauthorized(response)) return;
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -25,13 +25,13 @@ export async function getCategoryImages(categoryId) {
 export async function uploadCategoryImage(formData) {
   const response = await fetch(`${API_URL}/upload`, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${getToken()}`,
-    },
+     credentials: "include",
     body: formData,
   });
 
   const data = await response.json();
+
+  if (await handleUnauthorized(response)) return;
 
   if (!response.ok) {
     throw new Error(data.message);
@@ -40,15 +40,16 @@ export async function uploadCategoryImage(formData) {
   return data.image;
 }
 
+// Delete Image
 export async function deleteCategoryImage(id) {
   const response = await fetch(`${API_URL}/${id}/delete`, {
     method: "PATCH",
-    headers: {
-      Authorization: `Bearer ${getToken()}`,
-    },
+    credentials: "include",
   });
 
   const data = await response.json();
+
+  if (await handleUnauthorized(response)) return;
 
   if (!response.ok) {
     throw new Error(data.message);

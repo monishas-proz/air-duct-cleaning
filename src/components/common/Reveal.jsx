@@ -11,6 +11,7 @@ export default function Reveal({
   className = "",
 }) {
   const { ref, isVisible } = useInView();
+  
 
   const transforms = {
     up: `translateY(${distance}px)`,
@@ -37,7 +38,6 @@ export default function Reveal({
           opacity ${duration}ms cubic-bezier(.22,1,.36,1) ${delay}ms,
           transform ${duration}ms cubic-bezier(.22,1,.36,1) ${delay}ms
         `,
-        willChange: "transform, opacity",
       }}
     >
       {children}

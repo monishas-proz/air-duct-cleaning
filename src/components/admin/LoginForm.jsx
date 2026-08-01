@@ -6,6 +6,7 @@ import { loginAdmin } from "@/services/adminService";
 import toast from "react-hot-toast";
 import Button from "../common/Button";
 import useRedirectIfAuthenticated from "@/hooks/useRedirectIfAuthenticated";
+import { validateLogin } from "@/utils/validations/adminValidation";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -17,36 +18,50 @@ export default function LoginForm() {
     password: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: "",
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.username || !formData.password) {
-      toast.error("Please fill all fields.");
+    const validation = validateLogin(formData);
+
+    setErrors(validation.errors);
+
+    if (!validation.isValid) {
       return;
     }
 
     try {
       setLoading(true);
 
-      const data = await loginAdmin(formData);
-
-      // Save JWT
-      localStorage.setItem("admin_token", data.token);
+     const data = await loginAdmin(formData);
 
       toast.success(data.message);
 
-      router.push("/admin/categories");
+      router.replace("/admin/categories");
+      
     } catch (error) {
-      toast.error(error.message);
+      if (error.errors) {
+        setErrors(error.errors);
+      } else {
+        toast.error(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -74,6 +89,12 @@ export default function LoginForm() {
           placeholder="Enter username"
           className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-600"
         />
+
+        {errors.username && (
+          <p className="mt-1 text-sm text-red-600">
+            {errors.username}
+          </p>
+        )}
       </div>
 
       <div className="mb-6">
@@ -89,6 +110,12 @@ export default function LoginForm() {
           placeholder="Enter password"
           className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-600"
         />
+
+        {errors.password && (
+          <p className="mt-1 text-sm text-red-600">
+            {errors.password}
+          </p>
+        )}
       </div>
 
       <p className="mb-6 -mt-2 text-right">
