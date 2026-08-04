@@ -6,10 +6,10 @@ import AdminLayout from "@/components/admin/layout/AdminLayout";
 import TableLayout from "@/components/admin/ui/TableLayout";
 import Modal from "@/components/admin/ui/Modal";
 import Button from "@/components/common/Button";
-
+import Pagination from "@/components/common/Pagination";
 import ImageTable from "@/components/admin/category/ImageTable";
 import ImageForm from "@/components/admin/category/ImageForm";
-
+import toast from "react-hot-toast";
 import { getCategories } from "@/services/categoryService";
 import {
   getCategoryImages,
@@ -22,6 +22,12 @@ export default function ImagesPage() {
 
   const [categories, setCategories] = useState([]);
   const [images, setImages] = useState([]);
+  const [pagination, setPagination] = useState({
+  page: 1,
+  limit: 10,
+  totalPages: 1,
+  totalRecords: 0,
+});
 
   const [selectedCategory, setSelectedCategory] =
     useState("all");
@@ -38,35 +44,47 @@ export default function ImagesPage() {
   const loadCategories = async () => {
     try {
       const data = await getCategories();
-      setCategories(data);
+      setCategories(data.categories);
     } catch (error) {
       console.error(error);
     }
   };
 
   const loadImages = async (
-    categoryId = "all"
+    categoryId = selectedCategory,
+    page = 1,
+    limit = pagination.limit
   ) => {
     try {
-      const data =
-        await getCategoryImages(categoryId);
+      const data = await getCategoryImages(
+        categoryId,
+        page,
+        limit
+      );
 
-      setImages(data);
+      setImages(data.images);
+      setPagination(data.pagination);
     } catch (error) {
       console.error(error);
     }
   };
 
-  useEffect(() => {
-  if (!authLoading) {
-    loadCategories();
-    loadImages("all");
-  }
-}, [authLoading]);
+  const handlePageChange = async (page) => {
+    await loadImages(selectedCategory, page, pagination.limit);
+  };
 
   useEffect(() => {
-    loadImages(selectedCategory);
-  }, [selectedCategory]);
+    if (!authLoading) {
+      loadCategories();
+      loadImages("all", 1);
+    }
+  }, [authLoading]);
+
+  useEffect(() => {
+    if (!authLoading) {
+      loadImages(selectedCategory, 1);
+    }
+  }, [selectedCategory, authLoading]);
 
   const handleDeleteClick = (image) => {
     setSelectedImage(image);
@@ -78,15 +96,19 @@ export default function ImagesPage() {
 
     try {
       await deleteCategoryImage(selectedImage.id);
+      toast.success("Image deleted successfully.");
 
-      await loadImages(selectedCategory);
+     await loadImages(
+        selectedCategory,
+        pagination.page
+      );
 
       setDeleteModalOpen(false);
 
       setSelectedImage(null);
 
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -146,6 +168,8 @@ export default function ImagesPage() {
 
           <ImageTable
             images={images}
+            pagination={pagination}
+            onPageChange={handlePageChange}
             onDelete={handleDeleteClick}
           />
 
@@ -203,7 +227,7 @@ export default function ImagesPage() {
           categories={categories}
           onClose={() => setShowModal(false)}
           onSuccess={() =>
-            loadImages(selectedCategory)
+            loadImages(selectedCategory, pagination.page)
           }
         />
       </Modal>

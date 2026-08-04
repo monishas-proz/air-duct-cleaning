@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import ActionMenu from "@/components/admin/ui/ActionMenu";
+import Pagination from "@/components/common/Pagination";
 import { Trash2 } from "lucide-react";
 export default function ImageTable({
   images,
+  pagination,
+  onPageChange,
   onDelete,
 }) {
   return (
@@ -67,7 +70,7 @@ export default function ImageTable({
                 >
 
                   <td className="px-6 py-4">
-                    {index + 1}
+                    {(pagination.page - 1) * pagination.limit + index + 1}
                   </td>
 
                   <td className="px-6 py-4">
@@ -121,6 +124,16 @@ export default function ImageTable({
 
         </table>
 
+      </div>
+
+      <div className="shrink-0 border-t border-neutral-200 bg-white px-6 py-4">
+        <Pagination
+          page={pagination.page}
+          totalPages={pagination.totalPages}
+          totalRecords={pagination.totalRecords}
+          limit={pagination.limit}
+          onPageChange={onPageChange}
+        />
       </div>
 
     </div>

@@ -91,7 +91,7 @@ export default function ContactForm() {
             name="fullName"
             value={formData.fullName}
             onChange={handleChange}
-            placeholder="John Doe"
+            placeholder="Enter your name"
             required
             error={errors.fullName}
           />
@@ -101,7 +101,7 @@ export default function ContactForm() {
             name="organization"
             value={formData.organization}
             onChange={handleChange}
-            placeholder="Company Ltd."
+            placeholder="Enter your organization"
             error={errors.organization}
           />
         </div>
@@ -114,7 +114,7 @@ export default function ContactForm() {
             type="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder="john@company.com"
+            placeholder="Enter your email"
             required
             error={errors.email}
           />
@@ -125,7 +125,7 @@ export default function ContactForm() {
             type="tel"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="+1 (555) 000-0000"
+            placeholder="Enter your Phone number"
             required
             error={errors.phone}
           />

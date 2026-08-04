@@ -3,35 +3,65 @@ import { verifyAdminToken } from "@/middleware/authMiddleware";
 import { Category } from "@/models";
 import { ensureDbSynced } from "@/config/database";
 
-// GET All Categories
+// GET All Categories (Paginated)
 export async function GET(request) {
   try {
     const auth = verifyAdminToken(request);
+
     if (auth.error) {
       return NextResponse.json(
-        { success: false, message: auth.error },
+        {
+          success: false,
+          message: auth.error,
+        },
         { status: auth.status }
       );
     }
 
     await ensureDbSynced();
 
+    // Read query params
+    const { searchParams } = new URL(request.url);
+
+    const page = Number(searchParams.get("page")) || 1;
+    const limit = Number(searchParams.get("limit")) || 10;
+
+    const offset = (page - 1) * limit;
+
+    // Get total records
+    const totalRecords = await Category.count({
+      where: {
+        isDeleted: false,
+      },
+    });
+
+    // Get paginated data
     const categories = await Category.findAll({
       where: {
         isDeleted: false,
       },
       order: [["createdAt", "ASC"]],
+      limit,
+      offset,
     });
 
     return NextResponse.json(
       {
         success: true,
         categories,
+
+        pagination: {
+          page,
+          limit,
+          totalRecords,
+          totalPages: Math.ceil(totalRecords / limit),
+        },
       },
       { status: 200 }
     );
   } catch (error) {
     console.error("Get Categories Error:", error);
+
     return NextResponse.json(
       {
         success: false,

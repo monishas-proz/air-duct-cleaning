@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 
 import Input from "../ui/Input";
 import Button from "@/components/common/Button";
-
+import toast from "react-hot-toast";
 import {
   createCategory,
   updateCategory,
@@ -36,7 +36,7 @@ export default function CategoryForm({
     e.preventDefault();
 
     if (!name.trim()) {
-      alert("Category name is required.");
+      toast.error("Category name is required.");
       return;
     }
 
@@ -45,8 +45,10 @@ export default function CategoryForm({
 
       if (isEdit) {
         await updateCategory(category.id, name.trim());
+        toast.success("Category updated successfully.");
       } else {
         await createCategory(name.trim());
+        toast.success("Category created successfully.");
       }
 
       await onSuccess();
@@ -55,7 +57,7 @@ export default function CategoryForm({
 
       onClose();
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }

@@ -46,24 +46,48 @@ export async function GET(request, { params }) {
       where.categoryId = id;
     }
 
-    const images = await CategoryImage.findAll({
-      where,
+    // Pagination
+    const { searchParams } = new URL(request.url);
 
-      include: [
-        {
-          model: Category,
-          as: "category",
-          attributes: ["id", "name"],
-        },
-      ],
+    const page = Number(searchParams.get("page")) || 1;
+    const limit = Number(searchParams.get("limit")) || 10;
+    const offset = (page - 1) * limit;
 
-      order: [["createdAt", "DESC"]],
-    });
+    const { rows: images, count: totalRecords } =
+      await CategoryImage.findAndCountAll({
+        where,
+
+        include: [
+          {
+            model: Category,
+            as: "category",
+            where: {
+              isDeleted: false,
+            },
+            attributes: ["id", "name"],
+          },
+        ],
+
+        order: [["createdAt", "DESC"]],
+
+        limit,
+        offset,
+      });
+
+    const totalPages = Math.ceil(totalRecords / limit);
 
     return NextResponse.json(
       {
         success: true,
+
         images,
+
+        pagination: {
+          page,
+          limit,
+          totalPages,
+          totalRecords,
+        },
       },
       {
         status: 200,

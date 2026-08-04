@@ -20,8 +20,8 @@ import LayoutWrapper from "@/components/LayoutWrapper";
 // });
 
 export const metadata = {
-  title: "Air Care",
-  description: "Air Care Website",
+  title: "Adhi Robotic Services",
+  description: "Adhi Robotic Services Website",
 };
 
 export default function RootLayout({ children }) {

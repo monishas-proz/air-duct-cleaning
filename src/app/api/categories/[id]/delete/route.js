@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { verifyAdminToken } from "@/middleware/authMiddleware";
-import { Category } from "@/models";
+import { Category,CategoryImage } from "@/models";
 import { ensureDbSynced } from "@/config/database";
+
 
 export async function PATCH(request, { params }) {
   try {
@@ -33,8 +34,22 @@ export async function PATCH(request, { params }) {
       );
     }
 
+    // Soft delete category
     category.isDeleted = true;
     await category.save();
+
+    // Soft delete all images under this category
+    await CategoryImage.update(
+      {
+        isDeleted: true,
+      },
+      {
+        where: {
+          categoryId: id,
+          isDeleted: false,
+        },
+      }
+    );
 
     return NextResponse.json(
       {

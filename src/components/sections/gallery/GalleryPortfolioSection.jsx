@@ -31,7 +31,6 @@ export default function GalleryPortfolioSection({selectedCategory}) {
     loadImages();
   }, [selectedCategory]);
 
-  console.log(images);
 
  const galleryProjects = images.map((item) => ({
   id: item.id,

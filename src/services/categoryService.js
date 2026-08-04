@@ -3,20 +3,23 @@ import { handleUnauthorized } from "./apiUtils";
 const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/categories`;
 
 // Get All Categories
-export async function getCategories() {
-  const response = await fetch(API_URL, {
-     credentials: "include",
-  });
+export async function getCategories(page = 1, limit = 10) {
+  const response = await fetch(
+    `${API_URL}?page=${page}&limit=${limit}`,
+    {
+      credentials: "include",
+    }
+  );
 
   const data = await response.json();
 
   if (await handleUnauthorized(response)) return;
 
-    if (!response.ok) {
-      throw new Error(data.message);
-    }
+  if (!response.ok) {
+    throw new Error(data.message);
+  }
 
-  return data.categories;
+  return data;
 }
 
 
@@ -44,7 +47,6 @@ export async function createCategory(name) {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify({
       name,
@@ -69,7 +71,6 @@ export async function updateCategory(id, name) {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify({
       name,

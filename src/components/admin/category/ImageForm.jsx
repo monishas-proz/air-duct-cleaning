@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-
+import toast from "react-hot-toast";
 import Button from "@/components/common/Button";
 import { uploadCategoryImage } from "@/services/categoryImageService";
 
@@ -34,17 +34,17 @@ export default function ImageForm({
     e.preventDefault();
 
     if (!categoryId) {
-      alert("Please select a category.");
+      toast.error("Please select a category.");
       return;
     }
 
     if (!title.trim()) {
-      alert("Please enter image title.");
+      toast.error("Please enter image title.");
       return;
     }
 
     if (!image) {
-      alert("Please select an image.");
+      toast.error("Please select an image.");
       return;
     }
 
@@ -60,13 +60,15 @@ export default function ImageForm({
 
       await uploadCategoryImage(formData);
 
+      toast.success("Image uploaded successfully.");
+
       await onSuccess();
 
       resetForm();
 
       onClose();
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }

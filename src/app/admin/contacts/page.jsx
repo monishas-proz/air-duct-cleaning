@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import useAdminAuth from "@/hooks/useAdminAuth";
-
+import Pagination from "@/components/common/Pagination";
+import toast from "react-hot-toast";
 import AdminLayout from "@/components/admin/layout/AdminLayout";
 import TableLayout from "@/components/admin/ui/TableLayout";
 import Modal from "@/components/admin/ui/Modal";
@@ -19,6 +20,13 @@ export default function ContactsPage() {
 
   const [contacts, setContacts] = useState([]);
 
+  const [pagination, setPagination] = useState({
+  page: 1,
+  limit: 10,
+  totalPages: 1,
+  totalRecords: 0,
+});
+
   const [loading, setLoading] = useState(false);
 
   const [closeModal, setCloseModal] = useState(false);
@@ -29,27 +37,44 @@ export default function ContactsPage() {
 
   const [statusFilter, setStatusFilter] = useState("All");
 
-  const loadContacts = async () => {
+  const loadContacts = async (
+    page = pagination.page,
+    limit = pagination.limit,
+    status = statusFilter
+  ) => {
     try {
-      const data = await getContacts();
-      setContacts(data);
+      const data = await getContacts(
+        page,
+        limit,
+        status
+      );
+
+      setContacts(data.contacts);
+      setPagination(data.pagination);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const filteredContacts =
-  statusFilter === "All"
-    ? contacts
-    : contacts.filter(
-        (contact) => contact.status === statusFilter
-      );
+  const handlePageChange = async (page) => {
+    await loadContacts(
+      page,
+      pagination.limit,
+      statusFilter
+    );
+  };
 
   useEffect(() => {
-  if (!authLoading) {
-    loadContacts();
-  }
-}, [authLoading]);
+    if (!authLoading) {
+      loadContacts(1);
+    }
+  }, [authLoading]);
+
+  useEffect(() => {
+    if (!authLoading) {
+      loadContacts(1, pagination.limit, statusFilter);
+    }
+  }, [statusFilter]);
 
   // ----------------------------
   // In Progress
@@ -61,10 +86,11 @@ export default function ContactsPage() {
         status: "In Progress",
         remarks: contact.remarks || "",
       });
+      toast.success("Status updated successfully.");
 
       loadContacts();
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -84,7 +110,7 @@ export default function ContactsPage() {
 
   const handleCloseInquiry = async () => {
     if (!remarks.trim()) {
-      alert("Remarks are required.");
+      toast.error("Remarks are required.");
       return;
     }
 
@@ -96,6 +122,9 @@ export default function ContactsPage() {
         remarks,
       });
 
+      toast.success("Inquiry closed successfully.");
+      
+
       await loadContacts();
 
       setCloseModal(false);
@@ -105,7 +134,7 @@ export default function ContactsPage() {
       setRemarks("");
 
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -183,7 +212,9 @@ export default function ContactsPage() {
         >
 
           <ContactTable
-            contacts={filteredContacts}
+            contacts={contacts}
+            pagination={pagination}
+            onPageChange={handlePageChange}
             onInProgress={handleInProgress}
             onCloseInquiry={handleCloseClick}
           />
@@ -223,7 +254,7 @@ export default function ContactsPage() {
           <div className="flex justify-end gap-3">
 
             <Button
-              variant="secondary"
+              variant="modelCancel"
               onClick={() =>
                 setCloseModal(false)
               }

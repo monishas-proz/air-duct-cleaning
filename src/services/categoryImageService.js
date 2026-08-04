@@ -5,10 +5,17 @@ const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/category-images`;
 // Get Images
 // categoryId = "all" => all images
 // categoryId = 1 => particular category
-export async function getCategoryImages(categoryId = "all") {
-  const response = await fetch(`${API_URL}/${categoryId}`, {
-     credentials: "include",
-  });
+export async function getCategoryImages(
+  categoryId = "all",
+  page = 1,
+  limit = 10
+) {
+  const response = await fetch(
+    `${API_URL}/${categoryId}?page=${page}&limit=${limit}`,
+    {
+      credentials: "include",
+    }
+  );
 
   const data = await response.json();
 
@@ -18,7 +25,7 @@ export async function getCategoryImages(categoryId = "all") {
     throw new Error(data.message);
   }
 
-  return data.images;
+  return data;
 }
 
 // Upload Image
