@@ -1,37 +1,41 @@
-
-
 import { Pencil, Trash2 } from "lucide-react";
+import Pagination from "@/components/common/Pagination";
 
 export default function CategoryTable({
   categories,
+  pagination,
+  onPageChange,
   onEdit,
   onDelete,
 }) {
-
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm">
-      <div className="flex-1 overflow-y-auto overflow-x-auto">
-        <table className="min-w-full border-collapse">
+    <div className="flex h-full min-h-0 flex-1 flex-col overflow-hidden rounded-lg border border-neutral-200 bg-white shadow-sm">
+      {/* Scrollable Table */}
+      <div className="min-h-0 flex-1 overflow-auto">
+        <table className="min-w-full table-fixed border-collapse">
+
+          {/* Sticky Header */}
           <thead className="sticky top-0 z-10 bg-neutral-100 shadow-sm">
             <tr>
-              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left">
+              <th className="border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left">
                 S.No
               </th>
 
-              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left ">
+              <th className="border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left">
                 Category Name
               </th>
 
-              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left">
+              <th className="border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-left">
                 Created At
               </th>
 
-              <th className="sticky top-0 z-10 border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-center">
+              <th className="border-b border-neutral-200 bg-neutral-100 px-6 py-4 text-center">
                 Actions
               </th>
             </tr>
           </thead>
 
+          {/* Table Body */}
           <tbody>
             {categories.length === 0 ? (
               <tr>
@@ -46,7 +50,7 @@ export default function CategoryTable({
               categories.map((category, index) => (
                 <tr
                   key={category.id}
-                  className="border-t border-neutral-200 hover:bg-neutral-50 transition-colors"
+                  className="border-t border-neutral-200 transition-colors hover:bg-neutral-50"
                 >
                   <td className="px-6 py-4">
                     {index + 1}
@@ -62,12 +66,10 @@ export default function CategoryTable({
 
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-center gap-2">
-
                       <button
                         type="button"
                         onClick={() => onEdit(category)}
-                        className="cursor-pointer rounded-lg p-2 text-blue-600 transition hover:bg-blue-50 hover:text-blue-700"
-                        title="Edit Category"
+                        className="rounded-lg p-2 text-blue-600 transition hover:bg-blue-50 hover:text-blue-700"
                       >
                         <Pencil size={18} />
                       </button>
@@ -75,20 +77,31 @@ export default function CategoryTable({
                       <button
                         type="button"
                         onClick={() => onDelete(category)}
-                        className="cursor-pointer rounded-lg p-2 text-red-600 transition hover:bg-red-50 hover:text-red-700"
-                        title="Delete Category"
+                        className="rounded-lg p-2 text-red-600 transition hover:bg-red-50 hover:text-red-700"
                       >
                         <Trash2 size={18} />
                       </button>
-
                     </div>
                   </td>
                 </tr>
               ))
             )}
           </tbody>
+
         </table>
       </div>
+
+      {/* Fixed Footer */}
+      <div className="shrink-0 border-t border-neutral-200 bg-neutral-100 px-6 py-4">
+        <Pagination
+          page={pagination.page}
+          totalPages={pagination.totalPages}
+          totalRecords={pagination.totalRecords}
+          limit={pagination.limit}
+          onPageChange={onPageChange}
+        />
+      </div>
+
     </div>
   );
 }

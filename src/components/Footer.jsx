@@ -1,6 +1,6 @@
 "use client";
+import Link from "next/link";
 
-import { useState } from "react";
 import ScrollLink from "@/components/common/ScrollLink";
 import toast from "react-hot-toast";
 import ContactInfoList from "./common/ContactInfoList";
@@ -120,6 +120,13 @@ export default function Footer() {
                   </ScrollLink>
                 </li>
               ))}
+
+              <Link 
+                  href={"/services/"}
+                  className="link-hover body-md text-neutral-700 hover:text-primary-700"
+              >
+                View All Services
+              </Link>
             </ul>
           </div>
 
@@ -140,7 +147,15 @@ export default function Footer() {
       <div className="border-t border-neutral-200 py-6 lg:py-8">
         <div className="container">
           <p className="body-sm text-center text-neutral-500">
-            © {new Date().getFullYear()} Air Care Management. Professional HVAC & IAQ Specialists.
+            Copyright © {new Date().getFullYear()} All Rights Reserved | Developed by{" "}
+            <Link
+              href="https://proz.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary-700 transition-colors hover:text-primary-800 hover:underline"
+            >
+              ProZ Solutions
+            </Link>
           </p>
         </div>
       </div>

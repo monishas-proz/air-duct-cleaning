@@ -48,6 +48,7 @@ export default function Header() {
             <Button
               variant="primary"
               size="sm"
+              href={"/contact"}
             >
               Get a Quote
             </Button>

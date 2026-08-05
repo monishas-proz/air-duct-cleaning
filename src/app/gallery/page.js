@@ -1,35 +1,11 @@
-"use client";
+import GalleryClientPage from "./GalleryClientPage";
 
-import { useState } from "react";
+export const metadata = {
+  title: "Gallery | Adhi Robotic Services",
+  description:
+    "View our completed projects, HVAC cleaning work, cleanroom installations, air quality solutions, and industrial service portfolio delivered across various industries.",
+};
 
-import GalleryCTASection from "@/components/sections/gallery/GalleryCTASection";
-import GalleryHeroSection from "@/components/sections/gallery/GalleryHeroSection";
-import GalleryPortfolioSection from "@/components/sections/gallery/GalleryPortfolioSection";
-import GalleryTestimonialSection from "@/components/sections/gallery/GalleryTestimonialSection";
-import BeforeAfterSection from "@/components/sections/gallery/BeforeAfterSection";
-
-
-export default function GalleryPage(){
-
-    const [selectedCategory, setSelectedCategory] = useState("all");
-
-    return(
-
-    <>
-        <GalleryHeroSection
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-        />
-        <GalleryPortfolioSection 
-        selectedCategory={selectedCategory}
-        />
-
-      
-
-        <BeforeAfterSection />
-        <GalleryTestimonialSection />
-        {/* <GalleryCTASection /> */}
-        
-    </>
-    )
+export default function GalleryPage() {
+  return <GalleryClientPage />;
 }

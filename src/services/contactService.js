@@ -31,10 +31,17 @@ export async function submitContact(data) {
 
 
 // Get All Contacts
-export async function getContacts() {
-  const response = await fetch(`${API_URL}/admin/contacts`, {
-    credentials: "include",
-  });
+export async function getContacts(
+  page = 1,
+  limit = 10,
+  status = "All"
+) {
+  const response = await fetch(
+    `${API_URL}/admin/contacts?page=${page}&limit=${limit}&status=${encodeURIComponent(status)}`,
+    {
+      credentials: "include",
+    }
+  );
 
   const data = await response.json();
 
@@ -44,7 +51,7 @@ export async function getContacts() {
     throw new Error(data.message);
   }
 
-  return data.contacts;
+  return data;
 }
 
 // Get Contact By ID
@@ -71,7 +78,6 @@ export async function updateContact(id, payload) {
      credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify(payload),
   });

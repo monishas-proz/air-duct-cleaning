@@ -46,7 +46,7 @@ export default function DisinfectionSection() {
                 textClassName="body-md"
               />
 
-              <div className="mt-10">
+              {/* <div className="mt-10">
                 <Button
                   href={DISINFECTION.buttonHref}
                   variant="secondary"
@@ -54,7 +54,7 @@ export default function DisinfectionSection() {
                 >
                   {DISINFECTION.buttonText}
                 </Button>
-              </div>
+              </div> */}
 
             </div>
           </Reveal>

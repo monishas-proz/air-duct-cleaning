@@ -16,12 +16,6 @@ export default function useInView({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        console.log(
-          "isIntersecting:",
-          entry.isIntersecting,
-          "ratio:",
-          entry.intersectionRatio
-        );
 
         setIsVisible(entry.isIntersecting);
       },

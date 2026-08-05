@@ -1,9 +1,11 @@
 "use client";
 
 import ActionMenu from "@/components/admin/ui/ActionMenu";
-
+import Pagination from "@/components/common/Pagination";
 export default function ContactTable({
   contacts,
+  pagination,
+  onPageChange,
   onInProgress,
   onCloseInquiry,
 }) {
@@ -99,7 +101,7 @@ export default function ContactTable({
                 >
 
                   <td className="px-5 py-4">
-                    {index + 1}
+                    {(pagination.page - 1) * pagination.limit + index + 1}
                   </td>
 
                   <td className="px-5 py-4 font-medium">
@@ -163,7 +165,17 @@ export default function ContactTable({
 
         </table>
 
-      </div>
+        </div>
+
+          <div className="shrink-0 border-t border-neutral-200 bg-white px-6 py-4">
+            <Pagination
+              page={pagination.page}
+              totalPages={pagination.totalPages}
+              totalRecords={pagination.totalRecords}
+              limit={pagination.limit}
+              onPageChange={onPageChange}
+            />
+          </div>
 
     </div>
   );

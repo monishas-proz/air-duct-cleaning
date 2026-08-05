@@ -26,7 +26,6 @@ async function seedAdmin() {
     });
 
     if (existingAdmin) {
-      console.log("✅ Admin already exists.");
       process.exit(0);
     }
 
@@ -38,10 +37,6 @@ async function seedAdmin() {
       username,
       password: hashedPassword,
     });
-
-    console.log("✅ Admin created successfully.");
-    console.log(`Username: ${username}`);
-    console.log("Password: (stored securely as hash)");
 
     process.exit(0);
   } catch (error) {

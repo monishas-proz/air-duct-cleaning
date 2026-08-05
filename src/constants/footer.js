@@ -52,4 +52,9 @@ export const SERVICES_LINKS = [
     title: "Filter Solutions",
     path: "/services/",
   },
+  {
+    id: 5,
+    title: "Hydronic Cleaning",
+    path: "/services/",
+  },
 ];
