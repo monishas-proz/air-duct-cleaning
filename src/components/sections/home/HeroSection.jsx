@@ -4,7 +4,7 @@ export default function HeroSection() {
   return (
     <section className="relative">
       <div
-        className="h-[600px] bg-cover bg-center bg-no-repeat md:h-[700px] lg:h-[800px]"
+        className="h-[600px] bg-cover bg-center bg-no-repeat md:h-[580px] lg:h-[650px]"
         style={{
           backgroundImage: `url(${IMAGES.heroImage.src})`,
         }}
@@ -28,7 +28,7 @@ export default function HeroSection() {
                   Precision-engineered health for your indoor space.
                 </p>
 
-                <div className="mt-12 flex flex-col gap-4 lg:flex-row lg:gap-5">
+                {/* <div className="mt-12 flex flex-col gap-4 lg:flex-row lg:gap-5">
                   <Button variant="primary">
                     Our Solutions
                   </Button>
@@ -36,7 +36,7 @@ export default function HeroSection() {
                   <Button variant="secondary">
                     View Case Studies
                   </Button>
-                </div>
+                </div> */}
 
               </div>
             </div>

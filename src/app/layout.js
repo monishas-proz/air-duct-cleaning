@@ -20,8 +20,9 @@ import LayoutWrapper from "@/components/LayoutWrapper";
 // });
 
 export const metadata = {
-  title: "Adhi Robotic Services",
-  description: "Adhi Robotic Services Website",
+  title: "Adhi Robotic Services | Air Quality Management & HVAC Solutions",
+  description:
+    "Adhi Robotic Services is a trusted provider of air quality management, HVAC cleaning, air duct cleaning, AHU maintenance, cleanroom solutions, and industrial environmental services. We serve healthcare, pharmaceutical, commercial, and manufacturing industries with reliable and professional solutions.",
 };
 
 export default function RootLayout({ children }) {

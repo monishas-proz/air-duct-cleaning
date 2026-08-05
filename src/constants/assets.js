@@ -105,7 +105,7 @@ import hydronicIcon from "@/assets/icons/Hydronic_Icon.png";
 import kitchenDuctIcon from "@/assets/icons/kitchen_DuctIcon.png";
 import WorkstationIcon from "@/assets/icons/Workstation_Icon.png";
 import Hydronic_BalancingImg from "@/assets/images/services/Hydronic_Balancing.png";
-
+import Industries_HeroImg from "@/assets/images/industries/Industries_HeroImg.jpg";
 
 
 export const IMAGES = {
@@ -222,6 +222,7 @@ export const INDUSTRIES_ICONS = {
 }
 
 export const INDUSTRIES_IMAGES = {
+   heroImg : Industries_HeroImg,
    corporate: CommercialImage,
    industry: CoolingTowerImage,
    datacenter : DataCenterImage
