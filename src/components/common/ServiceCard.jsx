@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
-import {ArrowRight} from "lucide-react";
 
 export default function ServiceCard({
   image,
@@ -12,36 +10,34 @@ export default function ServiceCard({
   href,
   buttonText,
   buttonIcon,
-  className =""
+  className = "",
 }) {
   return (
-    <div className="group flex h-full flex-col border border-neutral-200 bg-white p-6 transition-all duration-300 hover:-translate-y-2 hover:border-primary-200 hover:shadow-xl lg:p-8">
+    <div className="card card-hover group flex h-full flex-col p-6 lg:p-7">
+      {image && (
+        <div className="overflow-hidden rounded-xl">
+          <Image
+            src={image}
+            alt={title}
+            className="h-[200px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      )}
 
-        {image && (
-            <div className="overflow-hidden rounded-lg">
-              <Image
-                src={image}
-                alt={title}
-                className="h-[220px] w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-            </div>
-          )}
+      {icon && (
+        <div
+          className={`mt-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${className}`}
+        >
+          <Image
+            src={icon}
+            alt={title}
+            width={30}
+            height={30}
+          />
+        </div>
+      )}
 
-        {icon && (
-          <div
-            className={`mt-6 flex h-14 w-14 items-center justify-center transition-transform duration-300 group-hover:scale-110 ${className}`}
-          >
-            <Image
-              src={icon}
-              alt={title}
-              width={30}
-              height={30}
-            />
-          </div>
-        )}
-
-      <div className={"mt-6"}>
-
+      <div className={`${image || icon ? "mt-6" : ""} flex flex-1 flex-col`}>
         <h3 className="heading-3 text-neutral-900 transition-colors duration-300 group-hover:text-primary-700">
           {title}
         </h3>

@@ -7,12 +7,13 @@ export default function FeaturedProjectCard({
   description,
 }) {
   return (
-    <div className="image-hover group rounded-lg h-full">
+    <div className="image-hover group h-full">
       {/* Image */}
-      <img
+      <Image
         src={image}
         alt={title}
-        className="h-full w-full object-cover"
+        fill
+        className="object-cover"
       />
 
       {/* Overlay */}

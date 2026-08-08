@@ -4,12 +4,14 @@ export default function HeroSection() {
   return (
     <section className="relative">
       <div
-        className="h-[600px] bg-cover bg-center bg-no-repeat md:h-[580px] lg:h-[650px]"
+        className="relative h-[600px] bg-cover bg-center bg-no-repeat md:h-[580px] lg:h-[650px]"
         style={{
           backgroundImage: `url(${IMAGES.heroImage.src})`,
         }}
       >
-        <div className="container h-full py-10 lg:py-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-white/10" />
+
+        <div className="container relative z-10 h-full py-10 lg:py-0">
           <div className="flex h-full items-center">
             <div className="max-w-full lg:max-w-[550px]">
               <div className="space-y-1">

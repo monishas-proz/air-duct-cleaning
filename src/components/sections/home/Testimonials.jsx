@@ -28,13 +28,13 @@ export default function TestimonialSection() {
             />
 
             <p className="body-lg text-center italic text-neutral-700">
-              "
+              &ldquo;
               <Typewriter
                 text={TESTIMONIAL.quote}
                 speed={30}
                 start={isVisible}
               />
-              "
+              &rdquo;
             </p>
 
             <div className="mt-8 flex flex-col items-center lg:mt-10">

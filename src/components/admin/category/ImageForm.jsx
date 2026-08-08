@@ -5,6 +5,9 @@ import toast from "react-hot-toast";
 import Button from "@/components/common/Button";
 import { uploadCategoryImage } from "@/services/categoryImageService";
 
+const fieldClass =
+  "w-full rounded-lg border border-neutral-300 bg-white px-3.5 py-2.5 text-neutral-800 outline-none transition duration-200 placeholder:text-neutral-400 focus:border-primary-600 focus:ring-2 focus:ring-primary-100";
+
 export default function ImageForm({
   categories,
   onClose,
@@ -79,8 +82,6 @@ export default function ImageForm({
       onSubmit={handleSubmit}
       className="space-y-5"
     >
-      {/* Category */}
-
       <div>
         <label className="mb-2 block text-sm font-medium text-neutral-700">
           Category
@@ -88,10 +89,8 @@ export default function ImageForm({
 
         <select
           value={categoryId}
-          onChange={(e) =>
-            setCategoryId(e.target.value)
-          }
-          className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-700"
+          onChange={(e) => setCategoryId(e.target.value)}
+          className={`${fieldClass} cursor-pointer`}
         >
           <option value="">
             Select Category
@@ -108,8 +107,6 @@ export default function ImageForm({
         </select>
       </div>
 
-      {/* Title */}
-
       <div>
         <label className="mb-2 block text-sm font-medium text-neutral-700">
           Image Title
@@ -118,15 +115,11 @@ export default function ImageForm({
         <input
           type="text"
           value={title}
-          onChange={(e) =>
-            setTitle(e.target.value)
-          }
+          onChange={(e) => setTitle(e.target.value)}
           placeholder="Enter image title"
-          className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-700"
+          className={fieldClass}
         />
       </div>
-
-      {/* Description */}
 
       <div>
         <label className="mb-2 block text-sm font-medium text-neutral-700">
@@ -136,15 +129,11 @@ export default function ImageForm({
         <textarea
           rows={4}
           value={description}
-          onChange={(e) =>
-            setDescription(e.target.value)
-          }
+          onChange={(e) => setDescription(e.target.value)}
           placeholder="Enter description"
-          className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-700"
+          className={fieldClass}
         />
       </div>
-
-      {/* Upload */}
 
       <div>
         <label className="mb-2 block text-sm font-medium text-neutral-700">
@@ -155,15 +144,12 @@ export default function ImageForm({
           ref={fileInputRef}
           type="file"
           accept=".jpg,.jpeg,.png,.webp"
-          onChange={(e) =>
-            setImage(e.target.files[0])
-          }
-          className="block w-full cursor-pointer rounded-lg border border-neutral-300 px-3 py-2 text-sm file:mr-4 file:cursor-pointer file:rounded-md file:border-0 file:bg-primary-700 file:px-4 file:py-2 file:text-white hover:file:bg-primary-800"
+          onChange={(e) => setImage(e.target.files[0])}
+          className="block w-full cursor-pointer rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-600 transition duration-200 file:mr-4 file:cursor-pointer file:rounded-md file:border-0 file:bg-primary-700 file:px-4 file:py-2 file:text-white file:transition-colors hover:border-primary-300 hover:file:bg-primary-800"
         />
       </div>
 
       <div className="flex justify-end gap-3">
-
         <Button
           type="button"
           variant="modelCancel"
@@ -176,11 +162,8 @@ export default function ImageForm({
         </Button>
 
         <Button type="submit">
-          {loading
-            ? "Uploading..."
-            : "Upload Image"}
+          {loading ? "Uploading..." : "Upload Image"}
         </Button>
-
       </div>
     </form>
   );

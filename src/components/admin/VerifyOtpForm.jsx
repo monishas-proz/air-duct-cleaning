@@ -8,6 +8,13 @@ import Button from "../common/Button";
 import { verifyOtp } from "@/services/adminService";
 import useRedirectIfAuthenticated from "@/hooks/useRedirectIfAuthenticated";
 import { validateOtp } from "@/utils/validations/adminValidation";
+
+const inputClass =
+  "w-full rounded-lg border border-neutral-300 bg-white px-3.5 py-2.5 text-neutral-800 outline-none transition duration-200 placeholder:text-neutral-400 focus:border-primary-600 focus:ring-2 focus:ring-primary-100";
+
+const errorInputClass =
+  "w-full rounded-lg border border-red-500 bg-white px-3.5 py-2.5 text-neutral-800 outline-none transition duration-200 placeholder:text-neutral-400 focus:border-red-500 focus:ring-2 focus:ring-red-100";
+
 export default function VerifyOtpForm() {
   const router = useRouter();
 
@@ -22,17 +29,17 @@ export default function VerifyOtpForm() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
+    e.preventDefault();
 
-      const validation = validateOtp({
-    otp,
-  });
+    const validation = validateOtp({
+      otp,
+    });
 
-  setErrors(validation.errors);
+    setErrors(validation.errors);
 
-  if (!validation.isValid) {
-    return;
-  }
+    if (!validation.isValid) {
+      return;
+    }
 
     try {
       setLoading(true);
@@ -61,18 +68,18 @@ export default function VerifyOtpForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-md rounded-xl bg-white p-8 shadow-lg"
+      className="w-full max-w-md rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm"
     >
-      <h1 className="mb-2 text-center text-3xl font-bold text-primary-700">
+      <h1 className="text-center font-heading text-2xl font-bold tracking-tight text-neutral-900">
         Verify OTP
       </h1>
 
-      <p className="mb-8 text-center text-sm text-neutral-500">
+      <p className="mb-8 mt-2 text-center text-sm text-neutral-500">
         Enter the OTP sent to your registered email.
       </p>
 
       <div className="mb-5">
-        <label className="mb-2 block font-medium">
+        <label className="mb-2 block text-sm font-medium text-neutral-700">
           Username
         </label>
 
@@ -80,12 +87,12 @@ export default function VerifyOtpForm() {
           type="text"
           value={username}
           readOnly
-          className="w-full rounded-lg border border-neutral-300 bg-neutral-100 px-4 py-3"
+          className="w-full rounded-lg border border-neutral-300 bg-neutral-100 px-3.5 py-2.5 text-neutral-500"
         />
       </div>
 
       <div className="mb-6">
-        <label className="mb-2 block font-medium">
+        <label className="mb-2 block text-sm font-medium text-neutral-700">
           OTP
         </label>
 
@@ -101,11 +108,13 @@ export default function VerifyOtpForm() {
             }));
           }}
           placeholder="Enter OTP"
-          className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-600"
+          inputMode="numeric"
+          autoComplete="one-time-code"
+          className={errors.otp ? errorInputClass : inputClass}
         />
 
         {errors.otp && (
-          <p className="mt-1 text-sm text-red-600">
+          <p className="mt-1.5 text-sm text-red-600">
             {errors.otp}
           </p>
         )}

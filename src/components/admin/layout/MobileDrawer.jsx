@@ -43,35 +43,31 @@ export default function MobileDrawer({
       {/* Overlay */}
       <div
         onClick={onClose}
-        className={`fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden ${
-          open
-            ? "visible opacity-100"
-            : "invisible opacity-0"
+        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden ${
+          open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       />
 
       {/* Drawer */}
       <aside
+        role="dialog"
+        aria-modal="true"
+        aria-label="Admin navigation"
         className={`fixed left-0 top-0 z-50 flex h-screen w-72 flex-col border-r border-neutral-200 bg-white shadow-2xl transition-transform duration-300 lg:hidden ${
-          open
-            ? "translate-x-0"
-            : "-translate-x-full"
+          open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         {/* Header */}
-        <div className="border-b border-primary-200 bg-primary-50 px-8 py-6">
-          <Link
-            href="/"
-            onClick={onClose}
-          >
-            <h2 className="body-lg font-heading font-bold uppercase text-primary-800">
+        <div className="border-b border-neutral-200 px-6 py-5">
+          <Link href="/" onClick={onClose}>
+            <h2 className="font-heading text-base font-bold uppercase tracking-tight text-primary-800">
               Adhi Robotic Services
             </h2>
           </Link>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 space-y-2 p-6">
+        <nav className="flex-1 space-y-1.5 p-4">
           {menus.map((item) => {
             const active = pathname === item.href;
 
@@ -80,11 +76,12 @@ export default function MobileDrawer({
                 key={item.title}
                 href={item.href}
                 onClick={onClose}
-                className={`flex items-center rounded-xl px-5 py-4 transition-all duration-200 ${
+                aria-current={active ? "page" : undefined}
+                className={`flex items-center rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
                   active
-                    ? "bg-primary-800 text-white shadow-lg"
-                    : "text-primary-800 hover:bg-primary-800 hover:text-white"
-                } active:scale-95`}
+                    ? "bg-primary-800 text-white"
+                    : "text-primary-800 hover:bg-primary-50 hover:text-primary-900"
+                }`}
               >
                 {item.title}
               </Link>
@@ -93,33 +90,26 @@ export default function MobileDrawer({
         </nav>
 
         {/* Bottom Actions */}
-          <div className="space-y-3 border-t border-neutral-200 p-5">
+        <div className="space-y-3 border-t border-neutral-200 p-4">
+          <Button
+            href="/"
+            size="sm"
+            className="w-full"
+            icon={<ArrowLeft size={18} />}
+            iconPosition="left"
+          >
+            Back to Home
+          </Button>
 
-            <Button
-              href="/"
-              size="sm"
-              className="w-full"
-              icon={<ArrowLeft size={18} />}
-              iconPosition="left"
-            >
-              Back to Home
-            </Button>
-
-            <Button
-              onClick={logout}
-              className="w-full"
-              iconPosition="left"
-              icon={
-                <LogOut
-                  size={18}
-                  strokeWidth={2}
-                />
-              }
-            >
-              Logout
-            </Button>
-
-          </div>
+          <Button
+            onClick={logout}
+            className="w-full"
+            iconPosition="left"
+            icon={<LogOut size={18} strokeWidth={2} />}
+          >
+            Logout
+          </Button>
+        </div>
       </aside>
     </>
   );

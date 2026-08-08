@@ -50,9 +50,16 @@ export default function CategoriesPage() {
   };
 
    useEffect(() => {
-  if (!authLoading) {
-    loadCategories(1);
-  }
+  if (!authLoading) return;
+  (async () => {
+    try {
+      const data = await getCategories(1, pagination.limit);
+      setCategories(data.categories);
+      setPagination(data.pagination);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
 }, [authLoading]);
 
   const handleAddCategory = () => {

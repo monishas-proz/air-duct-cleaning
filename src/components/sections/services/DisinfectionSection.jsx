@@ -35,7 +35,7 @@ export default function DisinfectionSection() {
               </h2>
 
               <p className="body-lg mt-6 italic text-neutral-600">
-                "{DISINFECTION.description}"
+                &ldquo;{DISINFECTION.description}&rdquo;
               </p>
 
               <FeatureList

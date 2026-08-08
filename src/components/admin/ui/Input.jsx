@@ -6,7 +6,7 @@ const Input = forwardRef(function Input(
 ) {
   return (
     <div className="space-y-2">
-      <label className="text-sm  font-medium text-neutral-700">
+      <label className="text-sm font-medium text-neutral-700">
         {label}
       </label>
 
@@ -15,19 +15,19 @@ const Input = forwardRef(function Input(
         {...props}
         className={`
           w-full
-          rounded-xl
+          rounded-lg
           border
           border-neutral-300
           bg-white
-          px-4
-          py-3
+          px-3.5
+          py-2.5
           text-neutral-800
           outline-none
-          transition-all
+          transition
           duration-200
           placeholder:text-neutral-400
-          focus:border-primary-700
-          focus:ring-4
+          focus:border-primary-600
+          focus:ring-2
           focus:ring-primary-100
           ${className}
         `}

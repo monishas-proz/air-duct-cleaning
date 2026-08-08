@@ -6,9 +6,9 @@ export default function FeatureCard({
   description,
 }) {
   return (
-    <div className="rounded-lg border border-neutral-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-      <div className="flex items-center gap-4">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-50">
+    <div className="card card-hover h-full p-5">
+      <div className="flex items-start gap-4">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary-50">
           <Image
             src={icon}
             alt={title}
@@ -17,12 +17,12 @@ export default function FeatureCard({
           />
         </div>
 
-        <div>
-          <h3 className="body-lg font-semibold text-neutral-900">
+        <div className="min-w-0">
+          <h3 className="font-heading text-base font-semibold text-neutral-900">
             {title}
           </h3>
 
-          <p className="body-sm mt-1 text-neutral-600">
+          <p className="body-sm mt-1.5 text-neutral-600">
             {description}
           </p>
         </div>

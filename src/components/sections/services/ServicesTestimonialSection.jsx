@@ -43,13 +43,13 @@ export default function ServicesTestimonialSection() {
                 <div className="flex h-full flex-col justify-between">
 
                   <p className="body-lg italic text-neutral-700">
-                    "
+                    &ldquo;
                     <Typewriter
                       text={item.quote}
                       speed={20}
                       start={isVisible}
                     />
-                    "
+                    &rdquo;
                   </p>
 
                   <div className="mt-12">

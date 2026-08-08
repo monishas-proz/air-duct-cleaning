@@ -43,7 +43,9 @@ export default function ActionMenu({
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="cursor-pointer rounded-md p-2 transition hover:bg-neutral-100"
+        aria-label="Actions"
+        aria-expanded={open}
+        className="cursor-pointer rounded-lg p-2 transition hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600"
       >
         <MoreVertical
           size={18}

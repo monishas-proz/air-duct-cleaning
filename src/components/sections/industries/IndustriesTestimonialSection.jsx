@@ -34,13 +34,13 @@ export default function IndustriesTestimonialSection() {
             </span>
 
             <p className="body-lg relative z-10 max-w-5xl italic text-neutral-600">
-              "
+              &ldquo;
               <Typewriter
                 text={INDUSTRIES_TESTIMONIAL.description}
                 speed={18}
                 start={isVisible}
               />
-              "
+              &rdquo;
             </p>
           </div>
 

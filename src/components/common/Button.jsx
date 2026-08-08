@@ -14,39 +14,35 @@ export default function Button({
   size = "md",
 }) {
   const sizes = {
-    sm: "px-4 py-2 body-md",
-    md: "px-8 py-4 body-md",
-    lg: "px-10 py-5 body-lg",
+    sm: "px-4 h-10 text-sm",
+    md: "px-6 h-12 text-sm",
+    lg: "px-8 h-14 text-base",
   };
 
   const baseClasses =
-    "btn-effect inline-flex items-center justify-center gap-2 rounded-md font-semibold";
+    "btn-effect inline-flex items-center justify-center gap-2 rounded-lg font-semibold whitespace-nowrap select-none";
 
   const variants = {
-    primary: "bg-primary-800 text-white",
+    primary: "bg-primary-800 text-white shadow-sm shadow-primary-900/10",
 
-    secondary:
-      "border-2 border-secondary-500 text-secondary-600",
+    secondary: "border-2 border-secondary-500 text-secondary-600",
 
-    white: "bg-white text-primary-700",
+    white: "bg-white text-primary-700 shadow-sm",
 
-    outlineWhite:
-      "border border-white/50 text-white",
+    outlineWhite: "border border-white/50 text-white",
 
-    outlinePrimary:
-      "border border-primary-700 text-primary-700",
+    outlinePrimary: "border border-primary-700 text-primary-700",
 
-    link:
-      "p-0 rounded-none text-primary-700",
+    link: "p-0 h-auto rounded-none text-primary-700 hover:underline",
 
     chip:
-      "rounded-full border border-neutral-200 bg-white px-5 py-2 body-sm font-medium text-neutral-700",
+      "rounded-full border border-neutral-200 bg-white px-5 py-2 text-sm font-medium text-neutral-700 h-10",
 
     danger:
-      "bg-red-600 text-white hover:bg-red-700",
+      "bg-red-600 text-white hover:bg-red-700 shadow-sm shadow-red-900/10",
 
     modelCancel:
-      "border border-neutral-400 bg-white text-neutral-600 hover:bg-neutral-100 hover:border-neutral-500 hover:text-neutral-800",
+      "border border-neutral-300 bg-white text-neutral-600 hover:bg-neutral-50 hover:border-neutral-400 hover:text-neutral-800",
   };
 
   const classes = `${baseClasses} btn-${variant} ${variants[variant]} ${sizes[size]} ${className}`;
@@ -91,11 +87,14 @@ export default function Button({
     </>
   );
 
+  const focusClasses =
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2";
+
   if (href) {
     return (
       <Link
         href={href}
-        className={classes}
+        className={`${classes} ${focusClasses}`}
       >
         {content}
       </Link>
@@ -107,9 +106,9 @@ export default function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${classes} ${
+      className={`${classes} ${focusClasses} ${
         disabled
-          ? "cursor-not-allowed opacity-50"
+          ? "cursor-not-allowed opacity-50 shadow-none"
           : "cursor-pointer"
       }`}
     >
