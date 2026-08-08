@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { usePathname } from "next/navigation";
 import Button from "@/components/common/Button";
 import { useRouter } from "next/navigation";
@@ -30,17 +31,27 @@ const menuItems = [
 export default function Sidebar() {
   const pathname = usePathname();
 
-  const logout = async () => {
+const logout = async () => {
   try {
-    await fetch("/api/admin/logout", {
+    const response = await fetch("/api/admin/logout", {
       method: "POST",
       credentials: "include",
     });
+
+    if (response.ok) {
+      toast.success("Logout successful");
+
+      // Wait briefly so the toast is visible
+      setTimeout(() => {
+        router.replace("/admin/login");
+        router.refresh();
+      }, 800);
+    } else {
+      toast.error("Logout failed");
+    }
   } catch (error) {
     console.error("Logout failed:", error);
-  } finally {
-    router.replace("/admin/login");
-    router.refresh();
+    toast.error("Something went wrong");
   }
 };
 

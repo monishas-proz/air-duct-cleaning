@@ -120,13 +120,14 @@ export default function Footer() {
                   </ScrollLink>
                 </li>
               ))}
-
-              <Link 
-                  href={"/services/"}
-                  className="link-hover body-md text-neutral-700 hover:text-primary-700"
+             <li>
+             <ScrollLink
+                href="/services"
+                className="link-hover body-md text-neutral-700 hover:text-primary-700"
               >
                 View All Services
-              </Link>
+              </ScrollLink>
+              </li>
             </ul>
           </div>
 

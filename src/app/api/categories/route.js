@@ -40,7 +40,7 @@ export async function GET(request) {
       where: {
         isDeleted: false,
       },
-      order: [["createdAt", "ASC"]],
+      order: [["createdAt", "DESC"]],
       limit,
       offset,
     });

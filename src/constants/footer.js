@@ -35,26 +35,26 @@ export const SERVICES_LINKS = [
   {
     id: 1,
     title: "Duct Cleaning",
-    path: "/services/",
+    path: "/services",
   },
   {
     id: 2,
     title: "HVAC Maintenance",
-    path: "/services/",
+    path: "/services",
   },
   {
     id: 3,
     title: "IAQ Testing",
-    path: "/services/",
+    path: "/services",
   },
   {
     id: 4,
     title: "Filter Solutions",
-    path: "/services/",
+    path: "/services",
   },
   {
     id: 5,
     title: "Hydronic Cleaning",
-    path: "/services/",
+    path: "/services",
   },
 ];
