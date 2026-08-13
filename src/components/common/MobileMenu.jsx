@@ -10,14 +10,17 @@ import { NAV_LINKS } from "@/constants/navigation";
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
-
   const pathname = usePathname();
 
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "auto";
+ useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.classList.remove("menu-open");
     };
   }, [isOpen]);
 
@@ -29,28 +32,32 @@ export default function MobileMenu() {
         className="flex h-10 w-10 items-center justify-center rounded-lg text-neutral-800 transition hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 lg:hidden cursor-pointer"
         aria-label="Open menu"
       >
-        <Menu size={26} />
+        <Menu size={22} />
       </button>
 
-      {/* Overlay */}
+      {/* Overlay + Drawer */}
       <div
-        className={`fixed inset-0 z-50 transition-all duration-300 ${
+        className={`fixed inset-0 z-[9998] transition-all duration-300 ${
           isOpen
-            ? "visible bg-black/50 opacity-100"
-            : "invisible bg-black/0 opacity-0"
+            ? "opacity-100 visible"
+            : "opacity-0 invisible"
         }`}
         onClick={() => setIsOpen(false)}
       >
-        {/* Drawer */}
-        <aside
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile navigation"
-          className={`absolute right-0 top-0 flex h-full w-80 max-w-[85vw] flex-col border-l border-neutral-200 bg-white shadow-2xl transition-transform duration-300 ease-in-out ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-          onClick={(e) => e.stopPropagation()}
-        >
+        {/* Blurred background */}
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-md" />
+      </div>
+
+      {/* Drawer */}
+      <aside
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
+        className={`fixed top-0 right-0 z-[9999] h-screen w-80 max-w-[85vw] flex flex-col border-l border-neutral-200 bg-white shadow-2xl transition-transform duration-300 ease-out ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        onClick={(e) => e.stopPropagation()}
+      >
           {/* Header */}
           <div className="flex items-center justify-between border-b border-neutral-200 px-6 py-5">
             <h2 className="font-heading text-base font-bold uppercase tracking-tight text-primary-800">
@@ -101,7 +108,7 @@ export default function MobileMenu() {
             </div>
           </div>
         </aside>
-      </div>
+      
     </>
   );
 }

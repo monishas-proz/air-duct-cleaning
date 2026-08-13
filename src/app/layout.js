@@ -3,6 +3,7 @@ import { Hanken_Grotesk, Montserrat, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import LayoutWrapper from "@/components/LayoutWrapper";
+import AnimatedBackground from "@/components/common/AnimatedBackground";
 
 const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-hanken-grotesk",

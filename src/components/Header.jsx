@@ -9,7 +9,7 @@ import MobileMenu from "./common/MobileMenu";
 export default function Header() {
   const pathname = usePathname();
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/90 ">
       <div className="container flex h-16 items-center justify-between lg:h-[72px]">
         <ScrollLink
           href="/"

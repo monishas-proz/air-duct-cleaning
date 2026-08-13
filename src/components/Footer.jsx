@@ -97,7 +97,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="font-medium text-primary-700 transition-colors hover:text-primary-800 hover:underline"
             >
-              ProZ Solutions
+              ProZ Solutions LLP
             </Link>
           </p>
         </div>
