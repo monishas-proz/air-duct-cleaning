@@ -42,7 +42,7 @@ const TEAM = [
 
 export default function TeamSection() {
   return (
-    <section className="section section-gray">
+    <section className="section">
       <div className="container">
 
         {/* Section Heading */}

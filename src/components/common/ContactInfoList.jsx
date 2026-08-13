@@ -90,7 +90,7 @@ export default function ContactInfoList({
                   className={`transition-colors hover:text-primary-700 ${
                     isCard
                       ? "caption"
-                      : "body-md"
+                      : "body-sm"
                   } text-neutral-900`}
                 >
                   {value}

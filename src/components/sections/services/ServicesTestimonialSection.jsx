@@ -15,7 +15,7 @@ export default function ServicesTestimonialSection() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section className="section section-light">
+    <section className="section">
       <div className="container">
 
         <Reveal animation="up">

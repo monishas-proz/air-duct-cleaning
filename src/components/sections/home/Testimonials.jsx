@@ -12,7 +12,7 @@ export default function TestimonialSection() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section className="bg-neutral-50 py-12 lg:py-16">
+    <section className=" py-12 lg:py-16 section-transparent">
       <div className="container">
         <Reveal animation="up">
           <div

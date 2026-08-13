@@ -6,7 +6,7 @@ import Reveal from "@/components/common/Reveal";
 
 export default function AboutHeroSection() {
   return (
-    <section className="section">
+    <section className="section section-transparent">
       <div className="container grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
 
         {/* Left Content */}

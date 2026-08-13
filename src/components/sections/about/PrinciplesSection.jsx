@@ -44,7 +44,7 @@ const PRINCIPLES = [
 
 export default function PrinciplesSection() {
   return (
-    <section className="section section-light">
+    <section className="section ">
       <div className="container">
 
         <Reveal animation="up">

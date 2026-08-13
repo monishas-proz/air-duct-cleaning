@@ -7,7 +7,7 @@ import { QUICK_LINKS, SERVICES_LINKS } from "@/constants/footer";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-neutral-200 bg-neutral-50">
+    <footer className="border-t border-neutral-200 section-transparent">
       <div className="container py-14 lg:py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[1.5fr_0.9fr_0.9fr_1.3fr] lg:gap-12">
 
@@ -36,7 +36,7 @@ export default function Footer() {
                 <li key={item.id}>
                   <ScrollLink
                     href={item.path}
-                    className="link-hover body-md text-neutral-600 hover:text-primary-700"
+                    className="link-hover body-sm text-neutral-600 hover:text-primary-700"
                   >
                     {item.title}
                   </ScrollLink>
@@ -56,7 +56,7 @@ export default function Footer() {
                 <li key={item.id}>
                   <ScrollLink
                     href={item.path}
-                    className="link-hover body-md text-neutral-600 hover:text-primary-700"
+                    className="link-hover body-sm text-neutral-600 hover:text-primary-700"
                   >
                     {item.title}
                   </ScrollLink>
@@ -65,7 +65,7 @@ export default function Footer() {
               <li>
                 <ScrollLink
                   href="/services"
-                  className="link-hover body-md font-medium text-primary-700 hover:text-primary-800"
+                  className="link-hover body-sm font-medium text-primary-700 hover:text-primary-800"
                 >
                   View All Services
                 </ScrollLink>
@@ -87,7 +87,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-neutral-200 bg-white py-6">
+      <div className="border-t border-neutral-200 py-6">
         <div className="container">
           <p className="body-sm text-center text-neutral-500">
             Copyright © {new Date().getFullYear()} All Rights Reserved | Developed by{" "}

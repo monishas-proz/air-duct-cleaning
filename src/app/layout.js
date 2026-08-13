@@ -3,7 +3,7 @@ import { Hanken_Grotesk, Montserrat, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import LayoutWrapper from "@/components/LayoutWrapper";
-import AnimatedBackground from "@/components/common/AnimatedBackground";
+import BackgroundWindEffect from "@/components/common/AnimatedBackground";
 
 const hankenGrotesk = Hanken_Grotesk({
   variable: "--font-hanken-grotesk",
@@ -34,17 +34,19 @@ export default function RootLayout({ children }) {
       <body
         className={`${hankenGrotesk.variable} ${montserrat.variable} ${dmSans.variable}`}
       >
-        <LayoutWrapper>
-          {children}
+        <BackgroundWindEffect />
+        <div className="site-content">
+          <LayoutWrapper>
+            {children}
 
-           <Toaster
-            position="top-right"
-            toastOptions={{
-              duration: 4000,
-            }}
-          />
-          
-        </LayoutWrapper>
+             <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 4000,
+              }}
+            />
+          </LayoutWrapper>
+        </div>
       </body>
     </html>
   );
