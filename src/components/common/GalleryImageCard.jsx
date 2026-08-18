@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function GalleryImageCard({
   image,
   title,
@@ -6,12 +8,13 @@ export default function GalleryImageCard({
   className = "",
 }) {
   return (
-    <div className={`image-hover group rounded-lg ${className}`}>
+    <div className={`image-hover group h-72 ${className}`}>
       {/* Image */}
-      <img
+      <Image
         src={image}
         alt={alt}
-        className="h-72 w-full object-cover"
+        fill
+        className="object-cover"
       />
 
       {/* Overlay */}

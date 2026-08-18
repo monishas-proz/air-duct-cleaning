@@ -41,15 +41,6 @@ export default function ImagesPage() {
   const [selectedImage, setSelectedImage] =
     useState(null);
 
-  const loadCategories = async () => {
-    try {
-      const data = await getCategories();
-      setCategories(data.categories);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const loadImages = async (
     categoryId = selectedCategory,
     page = 1,
@@ -74,16 +65,36 @@ export default function ImagesPage() {
   };
 
   useEffect(() => {
-    if (!authLoading) {
-      loadCategories();
-      loadImages("all", 1);
-    }
+    if (!authLoading) return;
+
+    (async () => {
+      try {
+        const [categoryData, imageData] = await Promise.all([
+          getCategories(),
+          getCategoryImages("all", 1, pagination.limit),
+        ]);
+
+        setCategories(categoryData.categories);
+        setImages(imageData.images);
+        setPagination(imageData.pagination);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
   }, [authLoading]);
 
   useEffect(() => {
-    if (!authLoading) {
-      loadImages(selectedCategory, 1);
-    }
+    if (!authLoading) return;
+
+    (async () => {
+      try {
+        const data = await getCategoryImages(selectedCategory, 1, pagination.limit);
+        setImages(data.images);
+        setPagination(data.pagination);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
   }, [selectedCategory, authLoading]);
 
   const handleDeleteClick = (image) => {

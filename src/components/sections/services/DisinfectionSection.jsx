@@ -15,7 +15,7 @@ import {
 
 export default function DisinfectionSection() {
   return (
-    <section className="section section-light">
+    <section className="section section-transparent">
       <div className="container">
 
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-10">
@@ -35,7 +35,7 @@ export default function DisinfectionSection() {
               </h2>
 
               <p className="body-lg mt-6 italic text-neutral-600">
-                "{DISINFECTION.description}"
+                &ldquo;{DISINFECTION.description}&rdquo;
               </p>
 
               <FeatureList

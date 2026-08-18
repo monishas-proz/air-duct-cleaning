@@ -17,19 +17,20 @@ export default function CategoryForm({
 }) {
   const inputRef = useRef(null);
 
-  const [name, setName] = useState("");
+  const [prevCategory, setPrevCategory] = useState(category);
+
+  const [name, setName] = useState(category?.name || "");
   const [loading, setLoading] = useState(false);
 
   const isEdit = !!category;
 
+  if (category !== prevCategory) {
+    setPrevCategory(category);
+    setName(category?.name || "");
+  }
+
   useEffect(() => {
     inputRef.current?.focus();
-
-    if (category) {
-      setName(category.name);
-    } else {
-      setName("");
-    }
   }, [category]);
 
   const handleSubmit = async (e) => {

@@ -8,6 +8,13 @@ import Button from "../common/Button";
 import { forgotPassword } from "@/services/adminService";
 import useRedirectIfAuthenticated from "@/hooks/useRedirectIfAuthenticated";
 import { validateForgotPassword } from "@/utils/validations/adminValidation";
+
+const inputClass =
+  "w-full rounded-lg border border-neutral-300 bg-white px-3.5 py-2.5 text-neutral-800 outline-none transition duration-200 placeholder:text-neutral-400 focus:border-primary-600 focus:ring-2 focus:ring-primary-100";
+
+const errorInputClass =
+  "w-full rounded-lg border border-red-500 bg-white px-3.5 py-2.5 text-neutral-800 outline-none transition duration-200 placeholder:text-neutral-400 focus:border-red-500 focus:ring-2 focus:ring-red-100";
+
 export default function ForgotPasswordForm() {
   const router = useRouter();
 
@@ -21,7 +28,7 @@ export default function ForgotPasswordForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-   const validation = validateForgotPassword({
+    const validation = validateForgotPassword({
       username,
     });
 
@@ -55,14 +62,19 @@ export default function ForgotPasswordForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-md rounded-xl bg-white p-8 shadow-lg"
+      className="w-full max-w-md rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm"
     >
-      <h1 className="mb-8 text-center text-3xl font-bold text-primary-700">
+      <h1 className="text-center font-heading text-2xl font-bold tracking-tight text-neutral-900">
         Forgot Password
       </h1>
 
+      <p className="mb-8 mt-2 text-center text-sm text-neutral-500">
+        Enter your username and we&apos;ll send you an OTP to reset your
+        password.
+      </p>
+
       <div className="mb-6">
-        <label className="mb-2 block font-medium">
+        <label className="mb-2 block text-sm font-medium text-neutral-700">
           Username
         </label>
 
@@ -78,11 +90,12 @@ export default function ForgotPasswordForm() {
               username: "",
             }));
           }}
-          className="w-full rounded-lg border border-neutral-300 px-4 py-3 outline-none focus:border-primary-600"
+          autoComplete="username"
+          className={errors.username ? errorInputClass : inputClass}
         />
 
         {errors.username && (
-          <p className="mt-1 text-sm text-red-600">
+          <p className="mt-1.5 text-sm text-red-600">
             {errors.username}
           </p>
         )}
@@ -102,7 +115,7 @@ export default function ForgotPasswordForm() {
         <button
           type="button"
           onClick={() => router.push("/admin/login")}
-          className="font-medium text-primary-700 hover:underline cursor-pointer"
+          className="cursor-pointer font-medium text-primary-700 transition-colors hover:text-primary-800 hover:underline"
         >
           Back to Login
         </button>

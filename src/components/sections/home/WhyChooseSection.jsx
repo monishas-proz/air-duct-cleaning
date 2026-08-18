@@ -7,7 +7,7 @@ import { WHY_CHOOSE } from "@/constants/home";
 
 export default function WhyChooseSection() {
   return (
-    <section className="section section-light">
+    <section className="section">
       <div className="container">
 
         {/* Heading */}

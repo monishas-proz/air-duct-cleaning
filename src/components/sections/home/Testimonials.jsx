@@ -12,7 +12,7 @@ export default function TestimonialSection() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section className="bg-neutral-50 py-12 lg:py-16">
+    <section className=" py-12 lg:py-16 section-transparent">
       <div className="container">
         <Reveal animation="up">
           <div
@@ -28,13 +28,13 @@ export default function TestimonialSection() {
             />
 
             <p className="body-lg text-center italic text-neutral-700">
-              "
+              &ldquo;
               <Typewriter
                 text={TESTIMONIAL.quote}
                 speed={30}
                 start={isVisible}
               />
-              "
+              &rdquo;
             </p>
 
             <div className="mt-8 flex flex-col items-center lg:mt-10">

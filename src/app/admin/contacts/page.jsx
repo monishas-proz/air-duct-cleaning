@@ -65,15 +65,31 @@ export default function ContactsPage() {
   };
 
   useEffect(() => {
-    if (!authLoading) {
-      loadContacts(1);
-    }
+    if (!authLoading) return;
+
+    (async () => {
+      try {
+        const data = await getContacts(1, pagination.limit, statusFilter);
+        setContacts(data.contacts);
+        setPagination(data.pagination);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
   }, [authLoading]);
 
   useEffect(() => {
-    if (!authLoading) {
-      loadContacts(1, pagination.limit, statusFilter);
-    }
+    if (!authLoading) return;
+
+    (async () => {
+      try {
+        const data = await getContacts(1, pagination.limit, statusFilter);
+        setContacts(data.contacts);
+        setPagination(data.pagination);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
   }, [statusFilter]);
 
   // ----------------------------

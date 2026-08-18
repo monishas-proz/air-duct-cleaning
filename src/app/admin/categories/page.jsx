@@ -10,6 +10,7 @@ import CategoryForm from "@/components/admin/category/CategoryForm";
 import CategoryTable from "@/components/admin/category/CategoryTable";
 import TableLayout from "@/components/admin/ui/TableLayout";
 import useAdminAuth from "@/hooks/useAdminAuth";
+import { TriangleAlert } from "lucide-react";
 import {
   getCategories,
   deleteCategory,
@@ -49,9 +50,16 @@ export default function CategoriesPage() {
   };
 
    useEffect(() => {
-  if (!authLoading) {
-    loadCategories(1);
-  }
+  if (!authLoading) return;
+  (async () => {
+    try {
+      const data = await getCategories(1, pagination.limit);
+      setCategories(data.categories);
+      setPagination(data.pagination);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
 }, [authLoading]);
 
   const handleAddCategory = () => {
@@ -140,29 +148,36 @@ export default function CategoriesPage() {
           />
         </Modal>
 
+
         <Modal
           open={deleteModal}
           onClose={() => setDeleteModal(false)}
           title="Delete Category"
         >
           <div className="space-y-6">
+            <p className="text-neutral-700">
+              Are you sure you want to delete{" "}
+              <strong>{deleteCategoryData?.name}</strong>?
+            </p>
 
-            <div className="space-y-4">
-              <p className="text-neutral-700">
-                Are you sure you want to delete{" "}
-                <strong>{deleteCategoryData?.name}</strong>?
-              </p>
+            {/* Warning Alert */}
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
+                  <TriangleAlert className="h-5 w-5 text-amber-600" />
+                </div>
 
-              <div className="rounded-lg border border-red-200 bg-red-50 p-4">
-                <h4 className="font-semibold text-red-700">
-                  This action will:
-                </h4>
+                <div>
+                  <h4 className="font-semibold text-amber-800">
+                    This action will:
+                  </h4>
 
-                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-red-600">
-                  <li>Delete the selected category.</li>
-                  <li>Delete all images associated with this category.</li>
-                  <li>This action cannot be undone.</li>
-                </ul>
+                  <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-amber-700">
+                    <li>Delete the selected category.</li>
+                    <li>Delete all images associated with this category.</li>
+                    <li>This action cannot be undone.</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
@@ -178,7 +193,6 @@ export default function CategoriesPage() {
                 {loading ? "Deleting..." : "Delete"}
               </Button>
             </div>
-
           </div>
         </Modal>
       </div>

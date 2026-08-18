@@ -26,7 +26,7 @@ export default function GalleryHeroSection({selectedCategory, onCategoryChange})
 
 
   return (
-    <section className="section">
+    <section className="section section-transparent">
       <div className="container">
 
         {/* Hero Content */}

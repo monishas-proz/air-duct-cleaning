@@ -6,7 +6,7 @@ import Reveal from "@/components/common/Reveal";
 
 export default function AboutSection() {
   return (
-    <section className="bg-neutral-50 py-12">
+    <section className=" py-12">
       <div className="container flex flex-col gap-10 lg:flex-row lg:items-center">
 
         {/* Left Content */}

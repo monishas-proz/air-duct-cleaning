@@ -4,11 +4,11 @@ export default function TableLayout({
   children,
 }) {
   return (
-    <div className="flex min-h-0 flex-1 flex-col rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+    <div className="flex min-h-0 flex-1 flex-col gap-6">
       {(title || actions) && (
-        <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           {title && (
-            <h2 className="text-2xl font-semibold text-neutral-800">
+            <h2 className="font-heading text-xl font-semibold tracking-tight text-neutral-900">
               {title}
             </h2>
           )}
@@ -17,11 +17,7 @@ export default function TableLayout({
         </div>
       )}
 
-      <div className="min-h-0 flex-1 overflow-hidden">
-          {children}
-      </div>
-
-      
+      <div className="min-h-0 flex-1">{children}</div>
     </div>
   );
 }

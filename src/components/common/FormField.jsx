@@ -12,33 +12,36 @@ export default function FormField({
   required = false,
 }) {
   const inputClasses = `
-    body-md
     mt-2
     w-full
-    rounded-md
+    rounded-lg
     border
-    ${error ? "border-red-500" : "border-neutral-200"}
+    ${error ? "border-red-400" : "border-neutral-300"}
     bg-white
-    px-4
-    py-3
-    text-neutral-700
+    px-3.5
+    py-2.5
+    text-neutral-800
     placeholder:text-neutral-400
     outline-none
-    transition-colors
-    ${error ? "focus:border-red-500" : "focus:border-primary-700"}
+    transition
+    duration-200
+    ${
+      error
+        ? "focus:border-red-500 focus:ring-2 focus:ring-red-100"
+        : "focus:border-primary-600 focus:ring-2 focus:ring-primary-100"
+    }
     ${className}
   `;
 
   return (
     <div>
       {/* Label */}
-      <label 
+      <label
         htmlFor={name}
-        className="caption font-semibold uppercase tracking-[0.08em] text-neutral-600">
+        className="text-sm font-medium text-neutral-700"
+      >
         {label}
-          {required && (
-            <span className="ml-1 text-red-500">*</span>
-          )}
+        {required && <span className="ml-0.5 text-red-500">*</span>}
       </label>
 
       {/* Select */}
@@ -48,7 +51,7 @@ export default function FormField({
           name={name}
           value={value}
           onChange={onChange}
-          className={inputClasses}
+          className={`${inputClasses} cursor-pointer`}
         >
           <option value="">Select a Service</option>
 
@@ -84,10 +87,9 @@ export default function FormField({
           className={inputClasses}
         />
       )}
+
       {error && (
-        <p className="mt-1 text-sm text-red-600">
-          {error}
-        </p>
+        <p className="mt-1.5 text-sm text-red-600">{error}</p>
       )}
     </div>
   );

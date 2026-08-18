@@ -33,13 +33,13 @@ export default function GalleryTestimonialSection() {
           </div>
 
           <p className="body-lg mx-auto mt-4 max-w-3xl italic text-neutral-600">
-            "
+            &ldquo;
             <Typewriter
               text={TESTIMONIAL.quote}
               speed={30}
               start={isVisible}
             />
-            "
+            &rdquo;
           </p>
 
           <p className="caption mt-4 font-semibold uppercase tracking-[0.15em] text-primary-700">

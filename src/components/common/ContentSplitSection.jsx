@@ -172,7 +172,7 @@ export default function ContentSplitSection({
   );
 
   return (
-    <section className="section section-light">
+    <section className="section section-transparent">
       <div className="container">
 
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-14">

@@ -5,7 +5,7 @@ import { SERVICES_HERO } from "@/constants/services";
 
 export default function ServicesHeroSection() {
   return (
-    <section className="section">
+    <section className="section section-transparent">
       <div className="container">
         <Reveal animation="up">
           <div className="mx-auto max-w-5xl text-center">

@@ -1,11 +1,12 @@
 @import "tailwindcss";
-:root {
-  --font-hanken-grotesk: "Segoe UI", Arial, sans-serif;
-  --font-montserrat: "Arial", "Helvetica Neue", sans-serif;
-  --font-dm-sans: "Segoe UI", Arial, sans-serif;
-}
-@theme {
 
+:root {
+  --font-hanken-grotesk: "Hanken Grotesk", "Segoe UI", Arial, sans-serif;
+  --font-montserrat: "Montserrat", "Segoe UI", Arial, sans-serif;
+  --font-dm-sans: "DM Sans", "Segoe UI", Arial, sans-serif;
+}
+
+@theme {
   /* Brand */
   --color-primary-50: var(--color-green-50);
   --color-primary-100: var(--color-green-100);
@@ -55,168 +56,273 @@
 }
 
 /* ==========================================
-   Font Utilities
+   Base
 ========================================== */
 
-/* .font-heading {
-  font-family: var(--font-montserrat);
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-.font-body {
-  font-family: var(--font-dm-sans);
+body {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-neutral-800);
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-.font-ui {
-  font-family: var(--font-hanken-grotesk);
-} */
+/* Fixed visual layer that stays behind all application content while scrolling. */
+.background-wind-effect {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  contain: paint;
+  background: linear-gradient(
+    135deg,
+    rgb(236 253 245 / 0.5) 0%,
+    rgb(220 252 231 / 0.38) 30%,
+    rgb(209 250 229 / 0.32) 58%,
+    rgb(247 254 231 / 0.42) 78%,
+    rgb(240 253 244 / 0.5) 100%
+  );
+}
+
+.site-content {
+  position: relative;
+  z-index: 1;
+}
+
+.wind-streak {
+  position: absolute;
+  top: var(--wind-top);
+  left: 0;
+  width: clamp(6rem, 24vw, var(--wind-width));
+  height: var(--wind-height);
+  opacity: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(134 239 172 / 0.16) 18%,
+    rgb(34 197 94 / 0.8) 50%,
+    rgb(110 231 183 / 0.24) 82%,
+    transparent 100%
+  );
+  border-radius: 999px;
+  box-shadow:
+    0 0 5px rgb(34 197 94 / 0.58),
+    0 0 12px rgb(110 231 183 / 0.32);
+  filter: blur(0.2px) drop-shadow(0 0 3px rgb(34 197 94 / 0.42));
+  animation: wind-blow var(--wind-duration) linear var(--wind-delay) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes wind-blow {
+  0% {
+    transform: translate3d(-130vw, 0, 0);
+    opacity: 0;
+  }
+
+  15%,
+  85% {
+    opacity: var(--wind-opacity);
+  }
+
+  100% {
+    transform: translate3d(130vw, 0, 0);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .wind-streak {
+    box-shadow:
+      0 0 4px rgb(34 197 94 / 0.5),
+      0 0 9px rgb(110 231 183 / 0.28);
+    filter: blur(0.15px) drop-shadow(0 0 2px rgb(34 197 94 / 0.36));
+  }
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+::selection {
+  background-color: var(--color-primary-200);
+  color: var(--color-primary-950);
+}
+
+/* Visible keyboard focus */
+:focus-visible {
+  outline: 2px solid var(--color-primary-600);
+  outline-offset: 2px;
+}
 
 /* ==========================================
    Section Utilities
 ========================================== */
 
-.section {
-  padding-block: 4rem;
-}
-
-.section-sm {
-  padding-block: 3rem;
-}
-
-.section-lg {
-  padding-block: 6rem;
-}
-
-.section-gray {
-  background-color: var(--color-neutral-50);
-}
-
-.section-light {
-  background-color: var(--color-neutral-100);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--font-dm-sans);
-}
-
-
-.container {
-  max-width: 1400px;
-  margin-inline: auto;
-  padding-inline: 24px;
-}
-
-/* ==========================================
-   Typography Components
-========================================== */
-
-/* Display */
-.display {
-  @apply text-4xl font-bold leading-none;
-  font-family: var(--font-montserrat);
-}
-
-/* Headings */
-.heading-1 {
-  @apply text-3xl font-bold leading-tight;
-  font-family: var(--font-montserrat);
-}
-
-.heading-2 {
-  @apply text-2xl font-semibold leading-snug;
-  font-family: var(--font-montserrat);
-}
-
-.heading-3 {
-  @apply text-xl font-semibold leading-snug;
-  font-family: var(--font-montserrat);
-}
-
-/* Body */
-.body-lg {
-  @apply text-base leading-relaxed;
-  font-family: var(--font-dm-sans);
-}
-
-.body-md {
-  @apply text-sm leading-relaxed;
-  font-family: var(--font-dm-sans);
-}
-
-.body-sm {
-  @apply text-xs leading-relaxed;
-  font-family: var(--font-dm-sans);
-}
-
-/* Caption */
-.caption {
-  @apply text-xs;
-  font-family: var(--font-hanken-grotesk);
-}
-
-/* ==========================================
-   Responsive Typography
-========================================== */
-
-@media (min-width: 768px) {
-  .display {
-    @apply text-5xl;
+@layer components {
+  .section {
+    padding-block: clamp(3.25rem, 8vw, 5.5rem);
   }
 
+  .section-sm {
+    padding-block: clamp(2.25rem, 5vw, 3.5rem);
+  }
+
+  .section-lg {
+    padding-block: clamp(4.5rem, 10vw, 8rem);
+  }
+
+  .section-transparent {
+    background-color: #ffffff70;
+  }
+
+  /* .section-gray {
+    background-color: var(--color-neutral-50);
+  } */
+
+  /* .section-light {
+    background-color: var(--color-neutral-50);
+  } */
+
+  /* ==========================================
+     Typography Scale
+  ========================================== */
+
+  /* Display */
+  .display {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  /* Headings */
   .heading-1 {
-    @apply text-4xl;
+    font-family: var(--font-heading);
+    font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
   }
 
   .heading-2 {
-    @apply text-3xl;
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 2.5vw, 2.125rem);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
   .heading-3 {
-    @apply text-2xl;
+    font-family: var(--font-heading);
+    font-size: clamp(1.1875rem, 2vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.35;
   }
 
+  /* Body */
   .body-lg {
-    @apply text-lg;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: 1.7;
   }
 
   .body-md {
-    @apply text-base;
+    font-family: var(--font-body);
+    font-size: clamp(0.9375rem, 1vw, 1rem);
+    line-height: 1.65;
   }
 
+  .body-sm {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  /* Caption / small label */
   .caption {
-    @apply text-sm;
-  }
-}
-
-@media (min-width: 1024px) {
-  .display {
-    @apply text-6xl;
+    font-family: var(--font-ui);
+    font-size: 0.8125rem;
+    line-height: 1.5;
   }
 
-  .heading-1 {
-    @apply text-5xl;
-  }
-
-  .heading-2 {
-    @apply text-4xl;
-  }
-
-  .heading-3 {
-    @apply text-3xl;
-  }
-
+  /* Subtitle / eyebrow label */
   .subtitle {
-  @apply text-sm font-semibold md:text-base;
-  font-family: var(--font-montserrat);
-}
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  /* ==========================================
+     Badge (pill / eyebrow chip)
+  ========================================== */
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.4rem 1rem;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* ==========================================
+     Cards
+  ========================================== */
+
+  .card {
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-neutral-200);
+    background-color: #ffffff;
+  }
+
+  .card-hover {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary-200);
+    box-shadow: 0 12px 32px -12px rgb(2 44 34 / 0.16);
+  }
 }
 
-/* ==========================================================
-   Button Hover Effect
-========================================================== */
+.container {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
+}
+
+/* ==========================================
+   Button Base & Effects
+========================================== */
 
 .btn-effect {
   --btn-overlay: transparent;
@@ -231,22 +337,19 @@ body {
   isolation: isolate;
 
   transition:
-    color .45s cubic-bezier(.76,0,.24,1),
-    border-color .45s cubic-bezier(.76,0,.24,1);
+    color 0.3s cubic-bezier(0.76, 0, 0.24, 1),
+    border-color 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 /* Sliding Background */
-
 .btn-effect::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
-
   background: var(--btn-overlay);
-
   transform: translateX(100%);
-  transition: transform .45s cubic-bezier(.76,0,.24,1);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .btn-effect:hover::before {
@@ -254,7 +357,6 @@ body {
 }
 
 /* Keep content above overlay */
-
 .btn-text,
 .btn-icon {
   position: relative;
@@ -274,7 +376,7 @@ body {
 
 .btn-text span {
   display: block;
-  transition: transform .45s cubic-bezier(.76,0,.24,1);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .btn-text span:last-child {
@@ -296,8 +398,7 @@ body {
 =========================== */
 
 .btn-icon {
-  transition:
-    transform .45s cubic-bezier(.76,0,.24,1);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .btn-effect:hover .btn-icon {
@@ -339,9 +440,9 @@ body {
 }
 
 .btn-outlineWhite {
-  --btn-overlay: rgba(255,255,255,.15);
+  --btn-overlay: rgba(255, 255, 255, 0.15);
   --btn-hover-text: var(--color-white);
-  --btn-hover-border: rgba(255,255,255,.5);
+  --btn-hover-border: rgba(255, 255, 255, 0.5);
 }
 
 .btn-chip {
@@ -361,8 +462,7 @@ body {
 .link-hover {
   position: relative;
   display: inline-block;
-
-  transition: color .45s cubic-bezier(.76,0,.24,1);
+  transition: color 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .link-hover::after {
@@ -370,16 +470,12 @@ body {
   position: absolute;
   left: 0;
   bottom: -4px;
-
   width: 100%;
   height: 2px;
-
   background: currentColor;
-
   transform: scaleX(0);
   transform-origin: right;
-
-  transition: transform .45s cubic-bezier(.76,0,.24,1);
+  transition: transform 0.3s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .link-hover:hover::after {
@@ -395,39 +491,62 @@ body {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-
   transition:
-    transform .3s ease-in-out,
-    box-shadow .3s ease-in-out;
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .image-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, .18);
+  box-shadow: 0 20px 45px rgb(2 6 23 / 0.18);
 }
 
 .image-hover img {
-  transition:
-    transform .3s ease-in-out;
+  transition: transform 0.45s ease;
 }
 
 .image-hover:hover img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
-.image-hover::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+/* ==========================================
+   Scrollbar (WebKit)
+========================================== */
 
-  background: rgba(0,0,0,0);
-
-  transition:
-    background .3s ease-in-out;
-
-  pointer-events: none;
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-.image-hover:hover::after {
-  background: rgba(0,0,0,.10);
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-100);
 }
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  border-radius: 9999px;
+  border: 2px solid var(--color-neutral-100);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-400);
+}
+
+/* ==========================================
+   Reduced Motion
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

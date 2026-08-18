@@ -7,13 +7,17 @@ export default function ScrollLink({
   href,
   children,
   className,
+  onClick,
   ...props
 }) {
   const pathname = usePathname();
 
   const handleClick = (e) => {
-    // If already on the same page, scroll to top
-    if (pathname === href) {
+    // Extract only the pathname (ignore hash like #service1)
+    const targetPath = href.split("#")[0];
+
+    // If already on the target page, scroll to top
+    if (pathname === targetPath) {
       e.preventDefault();
 
       window.scrollTo({
@@ -21,6 +25,9 @@ export default function ScrollLink({
         behavior: "smooth",
       });
     }
+
+    // Call parent onClick if provided
+    onClick?.(e);
   };
 
   return (

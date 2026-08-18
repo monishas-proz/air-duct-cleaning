@@ -11,11 +11,18 @@ export default function Typewriter({
   const [displayText, setDisplayText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
 
-  useEffect(() => {
-    if (!start) return;
+  const resetKey = start ? `${text}::${speed}` : "";
 
+  const [prevResetKey, setPrevResetKey] = useState(resetKey);
+
+  if (resetKey !== prevResetKey) {
+    setPrevResetKey(resetKey);
     setDisplayText("");
     setIsTyping(true);
+  }
+
+  useEffect(() => {
+    if (!start) return;
 
     let index = 0;
 

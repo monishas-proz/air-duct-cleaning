@@ -27,24 +27,69 @@ export const SERVICES = [
      
   },
 
-   {
-    id: 2,
-    image: SERVICES_IMAGES.laundryCleaning,
-    icon: SERVICES_ICONS.laundry,
-    title: "Laundry Duct Cleaning",
+  {
+    id: 22,
+    title: "HVAC Duct Cleaning Robot in Operation",
+    image: SERVICES_IMAGES.robot,
     description:
-      "Cleaning of laundry exhaust ducts to remove lint accumulation, reduce fire hazards, and restore proper dryer airflow.",
-     
+       "A remote-operated robotic crawler with a rotary brush head and control unit with monitor, used to mechanically clean the interior of ductwork",
+    icon: SERVICES_ICONS.ductCleaning,
   },
 
-   {
-    id: 3,
-    image: SERVICES_IMAGES.exhaustCleaning,
-    icon: SERVICES_ICONS.kitchen,
-    title: "Exhaust Cleaning",
+  {
+    id: 8,
+    title: " HVAC Duct Leakage Testing & Sealing ",
     description:
-      "We provide professional cleaning of kitchen exhaust systems, including hoods, ducts, filters, and exhaust fans. Our service removes grease buildup, improves ventilation, minimizes fire risks, and ensures compliance with safety and hygiene regulations. ",
+       "Detection of air leaks in ductwork followed by professional sealing to improve energy efficiency and airflow delivery.",
+    icon: SERVICES_ICONS.ductleakage,
+    image: SERVICES_IMAGES.ductleakage,
+  },
+
+  {
+    id: 15,
+    title: "HVAC Preventive Maintenance ",
+    description:
+       "Scheduled inspection and maintenance to prevent HVAC breakdowns and extend system life. ",
+    icon: SERVICES_ICONS.hvacPreventive,
+    image: SERVICES_IMAGES.hvacPreventive,
+  },
+
+  {
+    id: 16,
+    title: " HVAC Performance Inspection ",
+    description:
+       "Inspection of HVAC systems to evaluate operating performance against manufacturer specifications.",
+    icon: SERVICES_ICONS.hvacPerformance,
+    image: SERVICES_IMAGES.hvacPerformance,
+  },
+  
+  {
+    id: 17,
+    title: "HVAC System Health Check",
+    description:
+       "Comprehensive check-up of HVAC components to identify wear, inefficiencies, or potential failures.",
+    icon: SERVICES_ICONS.hvacSystem,
+    image: SERVICES_IMAGES.hvacSystem,
     
+  },
+
+  
+  {
+    id: 18,
+    title: "Duct Inspection & Condition Assessment",
+    description:
+       " Visual and instrument-based inspection of ductwork interiors to assess cleanliness and structural condition.",
+    icon: SERVICES_ICONS.ductInspection,
+    image: SERVICES_IMAGES.ductInspection,
+  },
+
+  {
+    id: 19,
+    title: "HVAC Energy Efficiency Assessment",
+    description:
+       "Evaluation of HVAC energy consumption and system efficiency, with recommendations for improvement.",
+    icon: SERVICES_ICONS.hvacEnergy,
+    image: SERVICES_IMAGES.hvacEnergy,
   },
 
   {
@@ -56,6 +101,38 @@ export const SERVICES = [
       "Our indoor air quality testing identifies airborne pollutants, particulate matter, humidity levels, ventilation performance, and other environmental factors. We provide detailed reports and recommendations to help maintain a healthier indoor environment. ",
      
   },
+
+  {
+    id: 13,
+    title: "Indoor Air Quality Assessment",
+    description:
+       "On-site assessment of indoor air quality using calibrated instruments to detect pollutants, humidity, and ventilation issues.",
+    icon: SERVICES_ICONS.indoorAirQuality,
+    image: SERVICES_IMAGES.indoorAirQuality,
+  },
+
+  {
+    id: 14,
+    title: "Air Quality Improvement Consultation ",
+    description:
+       "Expert recommendations to improve indoor air quality based on assessment results.",
+    icon: SERVICES_ICONS.airQuality,
+    image: SERVICES_IMAGES.improvement,
+  },
+
+   
+
+   {
+    id: 3,
+    image: SERVICES_IMAGES.exhaustCleaning,
+    icon: SERVICES_ICONS.kitchen,
+    title: "Exhaust Cleaning",
+    description:
+      "We provide professional cleaning of kitchen exhaust systems, including hoods, ducts, filters, and exhaust fans. Our service removes grease buildup, improves ventilation, minimizes fire risks, and ensures compliance with safety and hygiene regulations. ",
+    
+  },
+
+  
 
   {
     id: 5,
@@ -85,14 +162,7 @@ export const SERVICES = [
     image: SERVICES_IMAGES.ahuCoil,
   },
 
-  {
-    id: 8,
-    title: " HVAC Duct Leakage Testing & Sealing ",
-    description:
-       "Detection of air leaks in ductwork followed by professional sealing to improve energy efficiency and airflow delivery.",
-    icon: SERVICES_ICONS.ductleakage,
-    image: SERVICES_IMAGES.ductleakage,
-  },
+  
 
   {
     id: 9,
@@ -130,69 +200,10 @@ export const SERVICES = [
     image: SERVICES_IMAGES.sanitization,
   },
 
-  {
-    id: 13,
-    title: "Indoor Air Quality Assessment",
-    description:
-       "On-site assessment of indoor air quality using calibrated instruments to detect pollutants, humidity, and ventilation issues.",
-    icon: SERVICES_ICONS.indoorAirQuality,
-    image: SERVICES_IMAGES.indoorAirQuality,
-  },
-
-  {
-    id: 14,
-    title: "Air Quality Improvement Consultation ",
-    description:
-       "Expert recommendations to improve indoor air quality based on assessment results.",
-    icon: SERVICES_ICONS.airQuality,
-    image: SERVICES_IMAGES.improvement,
-  },
-
-  {
-    id: 15,
-    title: "HVAC Preventive Maintenance ",
-    description:
-       "Scheduled inspection and maintenance to prevent HVAC breakdowns and extend system life. ",
-    icon: SERVICES_ICONS.hvacPreventive,
-    image: SERVICES_IMAGES.hvacPreventive,
-  },
-
-  {
-    id: 16,
-    title: " HVAC Performance Inspection ",
-    description:
-       "Inspection of HVAC systems to evaluate operating performance against manufacturer specifications.",
-    icon: SERVICES_ICONS.hvacPerformance,
-    image: SERVICES_IMAGES.hvacPerformance,
-  },
   
-  {
-    id: 17,
-    title: "HVAC System Health Check",
-    description:
-       "Comprehensive check-up of HVAC components to identify wear, inefficiencies, or potential failures.",
-    icon: SERVICES_ICONS.hvacSystem,
-    image: SERVICES_IMAGES.hvacSystem,
-    
-  },
 
-  {
-    id: 18,
-    title: "Duct Inspection & Condition Assessment",
-    description:
-       " Visual and instrument-based inspection of ductwork interiors to assess cleanliness and structural condition.",
-    icon: SERVICES_ICONS.ductInspection,
-    image: SERVICES_IMAGES.ductInspection,
-  },
+  
 
-  {
-    id: 19,
-    title: "HVAC Energy Efficiency Assessment",
-    description:
-       "Evaluation of HVAC energy consumption and system efficiency, with recommendations for improvement.",
-    icon: SERVICES_ICONS.hvacEnergy,
-    image: SERVICES_IMAGES.hvacEnergy,
-  },
 
   {
     id: 20,
@@ -212,14 +223,7 @@ export const SERVICES = [
     icon: SERVICES_ICONS.airBalancing,
   },
 
-  {
-    id: 22,
-    title: "HVAC Duct Cleaning Robot in Operation",
-    image: SERVICES_IMAGES.robot,
-    description:
-       "A remote-operated robotic crawler with a rotary brush head and control unit with monitor, used to mechanically clean the interior of ductwork",
-    icon: SERVICES_ICONS.ductCleaning,
-  },
+  
 
   {
     id: 23,
@@ -229,6 +233,16 @@ export const SERVICES = [
        "A forwarded field photo explicitly labeled Kitchen Duct cleaning, showing grease/soot residue inside a duct section",
     icon: SERVICES_ICONS.kitchenDuct 
     
+  },
+
+  {
+    id: 2,
+    image: SERVICES_IMAGES.laundryCleaning,
+    icon: SERVICES_ICONS.laundry,
+    title: "Laundry Duct Cleaning",
+    description:
+      "Cleaning of laundry exhaust ducts to remove lint accumulation, reduce fire hazards, and restore proper dryer airflow.",
+     
   },
 
 
