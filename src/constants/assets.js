@@ -39,7 +39,7 @@ import DisinfectionIcon from "@/assets/icons/DisinfectionIcon.svg";
 import HeathCareIcon from "@/assets/icons/healthCareIcon.svg";
 import IndustrialIcon from "@/assets/icons/IndustrialIcon.svg";
 import CommercialImage from "@/assets/images/industries/commercial.svg";
-import CoolingTowerImage from "@/assets/images/industries/coolingTower.svg";
+import CoolingTowerImage from "@/assets/images/industries/coolingTower.png";
 import DataCenterImage from "@/assets/images/industries/datacenter.svg";
 import Chiller from "@/assets/images/gallery/Chiller.svg";
 import Image1 from "@/assets/images/gallery/image1.svg";
